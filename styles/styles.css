@@ -449,4 +449,12 @@ main .section.two-column > .default-content-wrapper > p:first-child + h2 {
     grid-column: 1;
     min-width: 0;
   }
+
+  /* The article body wraps at 720px in Variant C — tight reading
+     column. Default-content wrappers in two-column carry the article
+     prose (eyebrow + h2 + vita on doctor, full article on krank/news).
+     The list-rows wrapper stays full-width. */
+  main .section.two-column > .default-content-wrapper {
+    max-width: 720px;
+  }
 }

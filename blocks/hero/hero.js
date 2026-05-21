@@ -30,10 +30,11 @@ const extractInitials = (name) => {
 };
 
 export default function decorate(block) {
-  const row = block.firstElementChild;
-  if (!row) return;
+  const rows = [...block.children];
+  if (rows.length === 0) return;
 
-  const [textCell, imageCell] = row.children;
+  const firstRow = rows[0];
+  const [textCell, imageCell] = firstRow.children;
 
   if (textCell) {
     textCell.classList.add('hero-text');
@@ -53,6 +54,34 @@ export default function decorate(block) {
     }
   }
 
+  // KPI rows (rows 2..N): each is one (number | label) pair. Build a
+  // kpi-strip-grid inside the hero-text column so the KPIs tuck in
+  // under the buttons, matching the Variant C source layout.
+  if (rows.length > 1 && textCell) {
+    const grid = document.createElement('div');
+    grid.className = 'hero-kpi';
+    rows.slice(1).forEach((kpiRow) => {
+      const [numCell, labelCell] = kpiRow.children;
+      if (!numCell) return;
+      const kpi = document.createElement('div');
+      kpi.className = 'hero-kpi-item';
+      const n = document.createElement('div');
+      n.className = 'hero-kpi-n';
+      n.append(...numCell.childNodes);
+      kpi.append(n);
+      if (labelCell) {
+        const l = document.createElement('div');
+        l.className = 'hero-kpi-l';
+        l.append(...labelCell.childNodes);
+        kpi.append(l);
+      }
+      grid.append(kpi);
+    });
+    textCell.append(grid);
+    // Remove the now-flattened KPI rows from the block.
+    rows.slice(1).forEach((r) => r.remove());
+  }
+
   if (imageCell) {
     imageCell.classList.add('hero-image');
 
@@ -66,6 +95,23 @@ export default function decorate(block) {
           <div class="hero-portrait-initials">${initials}</div>
           <div class="hero-portrait-caption">Portrait · Platzhalter</div>
         </div>`;
+    }
+
+    // Image caption: if a <small> child of the image cell, render it
+    // as an overlaid credit. Authored as a paragraph or small tag.
+    const captionEl = imageCell.querySelector('small, p:last-child');
+    const captionText = captionEl?.textContent.trim();
+    const hasPicture = imageCell.querySelector('picture, img');
+    if (hasPicture && captionText && captionText.length < 80) {
+      // Avoid swallowing the image's alt-rendered paragraph.
+      if (captionEl.tagName === 'SMALL'
+          || (captionEl.tagName === 'P' && !captionEl.querySelector('picture, img'))) {
+        captionEl.remove();
+        const credit = document.createElement('div');
+        credit.className = 'hero-image-credit';
+        credit.textContent = captionText;
+        imageCell.append(credit);
+      }
     }
   }
 }

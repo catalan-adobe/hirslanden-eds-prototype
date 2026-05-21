@@ -112,24 +112,32 @@
   border-bottom: none;
 }
 
-/* Form variant — basic styling; richer form support via Block
-   Collection's form block composed inside (future work). */
-.aside-card.form .field {
-  margin-bottom: 10px;
+/* Form variant — renders the doctor "Termin anfragen" appointment
+   form. The migration script emits the <form> markup directly so
+   EDS doesn't have to synthesize fields from table cells. */
+.aside-card.form .aside-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 0 8px;
 }
 
-.aside-card.form .field label {
+.aside-card.form .aside-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.aside-card.form .aside-form label > span {
   font-size: 11px;
   font-weight: 600;
   color: var(--color-muted);
   text-transform: uppercase;
   letter-spacing: 0.8px;
-  display: block;
-  margin-bottom: 6px;
 }
 
-.aside-card.form .field input,
-.aside-card.form .field textarea {
+.aside-card.form .aside-form input,
+.aside-card.form .aside-form textarea {
   width: 100%;
   padding: 11px 14px;
   font-size: 15px;
@@ -139,4 +147,14 @@
   color: var(--color-text);
   font-family: inherit;
   box-sizing: border-box;
+}
+
+.aside-card.form .aside-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.aside-card.form .aside-form button {
+  margin-top: 6px;
+  width: 100%;
 }

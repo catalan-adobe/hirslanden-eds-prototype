@@ -113,6 +113,68 @@
   pointer-events: none;
 }
 
+.hero-image-credit {
+  position: absolute;
+  bottom: 14px;
+  left: 16px;
+  color: #fff;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* KPI strip rendered INSIDE the hero text column (after buttons).
+   Variant C uses a 4-up grid with a thin top border separating it
+   from the buttons above. */
+.hero-text .hero-kpi {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  border-top: 1.5px solid var(--color-border);
+  padding-top: 24px;
+  margin-top: 16px;
+  max-width: 560px;
+}
+
+.hero-text .hero-kpi-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hero-text .hero-kpi-n {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-primary-deep);
+  line-height: 1;
+  letter-spacing: 0.3px;
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-text .hero-kpi-n p {
+  margin: 0;
+}
+
+.hero-text .hero-kpi-l {
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  font-weight: 600;
+}
+
+.hero-text .hero-kpi-l p {
+  margin: 0;
+}
+
+@media (width <= 520px) {
+  .hero-text .hero-kpi {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 /* "portrait" variant — gradient placeholder with circular initials.
    The .hero-image::after scrim is hidden so the gradient reads cleanly. */
 .hero.portrait .hero-image {
