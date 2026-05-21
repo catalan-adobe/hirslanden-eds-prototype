@@ -16,9 +16,9 @@
 }
 
 /* Source body declares line-height:1.55 and everything inherits. The
-   prototype's element-level h*/p rules set their own line-height,
-   shadowing a single `.header.block { line-height: 1.55 }`. Apply per
-   descendant to win against element-selector rules. */
+   prototype's element-level h-tag and p rules set their own
+   line-height, shadowing a single `.header.block { line-height: 1.55 }`.
+   Apply per descendant to win against element-selector rules. */
 .header.block,
 .header.block * {
   line-height: 1.55;
