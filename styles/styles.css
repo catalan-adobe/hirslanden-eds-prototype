@@ -356,12 +356,51 @@ main .section.bg-surface {
   padding: 32px 0;
 }
 
+/* First paragraph in a bg-surface section reads as an eyebrow (news
+   article-hero pattern). Uppercase cyan-deep small-caps over the
+   headline that follows. */
+main .section.bg-surface > .default-content-wrapper > p:first-child {
+  font-size: 13px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--color-primary-deep);
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+
+/* First paragraph in a two-column section that's immediately followed
+   by an h2 is also an eyebrow (doctor "VITA & SCHWERPUNKTE" pattern). */
+main .section.two-column > .default-content-wrapper > p:first-child:has(+ h2) {
+  font-size: 13px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--color-primary-deep);
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+
+/* h2 immediately following an eyebrow paragraph in a two-column
+   section should read as the doctor name (sentence case, not the
+   default uppercase). */
+main .section.two-column > .default-content-wrapper > h2 {
+  font-size: 22px;
+  text-transform: none;
+  letter-spacing: 0;
+  margin-top: 0;
+}
+
 /* Variant C — bg-secondary section style: dark blue band (home finder) */
 main .section.bg-secondary {
   background-color: var(--color-secondary);
   color: #fff;
   margin: 0;
   padding: 48px 0;
+}
+
+main .section.bg-secondary > div {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
 }
 
 main .section.bg-secondary h1,

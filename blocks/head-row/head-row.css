@@ -1,0 +1,51 @@
+/*
+ * Hirslanden Variant C — head-row block
+ * Eyebrow + h2 on the left, optional "Alle X" link on the right.
+ */
+
+.head-row > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.head-row-title .eyebrow {
+  font-size: 13px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--color-primary-deep);
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.head-row-title h2 {
+  margin: 0;
+  font-size: 26px;
+  line-height: 1.15;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+.head-row-link {
+  font-size: 13px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.head-row-link a:any-link {
+  color: var(--color-primary-deep);
+  text-decoration: none;
+}
+
+.head-row-link a::after {
+  content: " →";
+}
+
+.head-row-link p {
+  margin: 0;
+}
