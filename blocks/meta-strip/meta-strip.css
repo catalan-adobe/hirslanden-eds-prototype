@@ -3,9 +3,10 @@
  * Thin band with icon-prefixed key/value items; last item right-aligned.
  */
 
+/* Block container is passthrough — all visual styles live on the row.
+   Earlier had its own padding 14px 0 that doubled up with the row,
+   pushing total vertical space to 28px instead of source 14px. */
 .meta-strip {
-  background: var(--color-surface);
-  padding: 14px 0;
   margin: 0;
 }
 
