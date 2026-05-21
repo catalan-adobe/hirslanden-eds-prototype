@@ -1,0 +1,60 @@
+/*
+ * Hirslanden Variant C — kpi-strip block
+ * 4-up grid of (number / label) pairs.
+ */
+
+.kpi-strip {
+  margin: 8px 0 0;
+}
+
+.kpi-strip-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  border-top: 1.5px solid var(--color-border);
+  padding-top: 24px;
+  max-width: 560px;
+}
+
+.kpi-strip .kpi {
+  display: flex;
+  flex-direction: column;
+}
+
+.kpi-strip .kpi-num {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-primary-deep);
+  line-height: 1;
+  letter-spacing: 0.3px;
+  font-variant-numeric: tabular-nums;
+}
+
+.kpi-strip .kpi-num p {
+  margin: 0;
+}
+
+.kpi-strip .kpi-label {
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.kpi-strip .kpi-label p {
+  margin: 0;
+}
+
+/* When inside a hero block, drop the top border (it sits within the
+   hero text column flow). */
+.hero .kpi-strip-grid {
+  border-top: 1.5px solid var(--color-border);
+}
+
+@media (width <= 520px) {
+  .kpi-strip-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
