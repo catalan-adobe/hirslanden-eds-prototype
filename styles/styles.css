@@ -91,6 +91,22 @@
   }
 }
 
+/* Source-aligned global resets (Phase 11a). The static-prototype
+   inline stylesheet ships these as load-bearing defaults; every
+   ported block assumes them. Phase 10.1 hit each one in turn while
+   auditing the chrome — promoting them here fixes the same cascading
+   gaps across all 8 content blocks in a single pass. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
 body {
   display: none;
   margin: 0;
@@ -98,7 +114,7 @@ body {
   color: var(--text-color);
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
-  line-height: 1.6;
+  line-height: 1.55; /* matches site/index.html line 28; was 1.6 */
 }
 
 body.appear {
