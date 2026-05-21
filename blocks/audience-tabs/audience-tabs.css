@@ -96,15 +96,15 @@
   margin: 0 0 10px;
 }
 
+.atab-panel-paths > p {
+  margin: 0;
+  grid-column: 1 / -1;
+}
+
 .atab-panel-paths {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
-}
-
-.atab-panel-paths > p {
-  margin: 0;
-  grid-column: 1 / -1;
 }
 
 .atab-panel-paths a:any-link {

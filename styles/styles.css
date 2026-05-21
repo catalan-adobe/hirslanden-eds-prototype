@@ -379,16 +379,6 @@ main .section.two-column > .default-content-wrapper > p:first-child:has(+ h2) {
   margin: 0 0 10px;
 }
 
-/* h2 immediately following an eyebrow paragraph in a two-column
-   section should read as the doctor name (sentence case, not the
-   default uppercase). */
-main .section.two-column > .default-content-wrapper > h2 {
-  font-size: 22px;
-  text-transform: none;
-  letter-spacing: 0;
-  margin-top: 0;
-}
-
 /* Variant C — bg-secondary section style: dark blue band (home finder) */
 main .section.bg-secondary {
   background-color: var(--color-secondary);
@@ -407,6 +397,16 @@ main .section.bg-secondary h1,
 main .section.bg-secondary h2,
 main .section.bg-secondary h3 {
   color: #fff;
+}
+
+/* h2 immediately following an eyebrow paragraph in a two-column
+   section should read as the doctor name (sentence case, not the
+   default uppercase). */
+main .section.two-column > .default-content-wrapper > h2 {
+  font-size: 22px;
+  text-transform: none;
+  letter-spacing: 0;
+  margin-top: 0;
 }
 
 /* Variant C — two-column section style: article + sticky aside.
