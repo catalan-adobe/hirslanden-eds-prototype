@@ -11,17 +11,38 @@
  */
 
 :root {
-  /* colors */
-  --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
+  /* Hirslanden Variant C — design tokens (mirrors site/*.html :root) */
+  --color-bg: #fff;
+  --color-surface: #f7f6f5;
+  --color-surface-2: #efedea;
+  --color-text: #534c46;
+  --color-muted: #72665b;
+  --color-primary: #0094d4;
+  --color-primary-soft: #e5f2f8;
+  --color-primary-deep: #006fa0;
+  --color-secondary: #27455c;
+  --color-accent: #f43a11;
+  --color-border: #e5e1dc;
+  --radius-btn: 999px;
+  --radius-card: 8px;
+  --radius-input: 6px;
+  --radius-chip: 18px;
+  --shadow-card: 0 6px 24px -8px rgb(83 76 70 / 18%);
+  --section-pad: 48px;
+  --section-pad-sm: 32px;
+  --grid-gap: 20px;
 
-  /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  /* boilerplate token aliases — overridden to match Variant C */
+  --background-color: var(--color-bg);
+  --light-color: var(--color-surface);
+  --dark-color: var(--color-secondary);
+  --text-color: var(--color-text);
+  --link-color: var(--color-primary-deep);
+  --link-hover-color: var(--color-primary);
+
+  /* fonts — Metropolis with Helvetica/Arial fallback */
+  --body-font-family: metropolis, "Helvetica Neue", arial, sans-serif;
+  --heading-font-family: metropolis, "Helvetica Neue", arial, sans-serif;
 
   /* body sizes */
   --body-font-size-m: 22px;
