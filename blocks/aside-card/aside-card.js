@@ -61,4 +61,22 @@ export default function decorate(block) {
     else if (idx === rows.length - 1 && rows.length > 1) cell.classList.add('aside-card-footer');
     else cell.classList.add('aside-card-body');
   });
+
+  // Form variant: EDS sanitizes <form>/<input> from authored content,
+  // so construct the appointment form in JS. The migration script
+  // emits a placeholder row that we replace with the real form.
+  if (block.classList.contains('form')) {
+    const placeholder = [...block.querySelectorAll('.aside-card-body')]
+      .find((el) => /\bIhr Name\b.*Telefon\b.*Anliegen\b/.test(el.textContent));
+    if (placeholder) {
+      const form = document.createElement('form');
+      form.className = 'aside-form';
+      form.addEventListener('submit', (e) => e.preventDefault());
+      form.innerHTML = `<label><span>Ihr Name</span><input type="text" name="name"></label>`
+        + `<label><span>Telefon</span><input type="tel" name="phone"></label>`
+        + `<label><span>Anliegen</span><textarea name="message" rows="3"></textarea></label>`
+        + `<button type="submit" class="button primary">Anfrage senden</button>`;
+      placeholder.replaceWith(form);
+    }
+  }
 }
