@@ -2,6 +2,16 @@
    stylesheet (footer section). Rules are scoped under .footer.block to
    keep them from leaking outside the chrome. */
 
+/* Source CSS was written under a global *{box-sizing:border-box} reset;
+   our prototype only applies border-box to buttons. Scope the reset to
+   the chrome so .wrap max-width-with-padding behaves like the source. */
+.footer.block,
+.footer.block *,
+.footer.block *::before,
+.footer.block *::after {
+  box-sizing: border-box;
+}
+
 .footer.block {
   background: #1f1c19;
   color: rgb(255 255 255 / 78%);

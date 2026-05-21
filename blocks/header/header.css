@@ -4,6 +4,17 @@
    so rules are scoped under .header.block to keep them from leaking
    outside the chrome. */
 
+/* Source CSS was written under a global *{box-sizing:border-box} reset;
+   our prototype only applies border-box to buttons. Scope the reset to
+   the chrome so every inner rule (search-circle 36px, wrap max-width
+   1280px, etc.) matches the source pixel-for-pixel. */
+.header.block,
+.header.block *,
+.header.block *::before,
+.header.block *::after {
+  box-sizing: border-box;
+}
+
 .header.block {
   position: sticky;
   top: 0;
