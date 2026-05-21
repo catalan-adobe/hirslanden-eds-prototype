@@ -3,9 +3,17 @@
  * Audience selector tabs + panel of paths/info.
  */
 
-.audience-tabs {
+/* Background extends viewport-wide — source's <section class="audience"> is
+   a top-level full-width element. The .section.audience-tabs-container
+   covers the viewport; backgrounding it here puts the white on full width
+   while inner content stays constrained by the wrapper. */
+main > .section.audience-tabs-container {
   background: #fff;
   border-bottom: 1px solid var(--color-border);
+}
+
+.audience-tabs {
+  background: #fff;
 }
 
 .atab-bar {
@@ -44,6 +52,12 @@
   color: var(--color-primary-deep);
   border-bottom-color: var(--color-primary);
   background: var(--color-primary-soft);
+}
+
+/* EDS auto-wraps cell text in <p>; the default p margins blow up tab
+   height from source 74px to 108px. Strip margins inside the tab. */
+.atab-bar .atab p {
+  margin: 0;
 }
 
 .atab-label {
@@ -86,15 +100,11 @@
   color: var(--color-text);
 }
 
+/* paths column lays out its <ul> (the actual grid) and any leading
+   <p> intros in normal flow. Earlier this had display:grid which
+   double-nested with the inner ul grid and broke link widths. */
 .atab-panel-paths > p {
-  margin: 0;
-  grid-column: 1 / -1;
-}
-
-.atab-panel-paths {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  margin: 0 0 10px;
 }
 
 .atab-panel-lead .label,
