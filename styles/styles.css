@@ -394,13 +394,13 @@ main .section.bg-secondary h3 {
     padding: 0;
   }
 
+  /* "1 / 100" is the EDS-friendly equivalent of "1 / -1": force the
+     aside to span every implicit row in column 2. We can't use -1
+     because it resolves against the explicit grid (1 row), and we
+     don't know upfront how many left-column items the author will
+     add. 100 is comfortably larger than any realistic row count. */
   main .section.two-column > .aside-card-wrapper {
     grid-column: 2;
-    /* "1 / 100" is the EDS-friendly equivalent of "1 / -1": force the
-       aside to span every implicit row in column 2. We can't use -1
-       because it resolves against the explicit grid (1 row), and we
-       don't know upfront how many left-column items the author will
-       add. 100 is comfortably larger than any realistic row count. */
     grid-row: 1 / 100;
   }
 
