@@ -400,9 +400,11 @@ main .section.bg-secondary h3 {
 }
 
 /* h2 immediately following an eyebrow paragraph in a two-column
-   section should read as the doctor name (sentence case, not the
-   default uppercase). */
-main .section.two-column > .default-content-wrapper > h2 {
+   section reads as the doctor name (sentence case, not the default
+   uppercase). Restricted to "p:first-child + h2" so the article-body
+   h2s in news/krankheitsbild bodies — which come AFTER paragraphs or
+   start the wrapper directly — keep their default 26px styling. */
+main .section.two-column > .default-content-wrapper > p:first-child + h2 {
   font-size: 22px;
   text-transform: none;
   letter-spacing: 0;
