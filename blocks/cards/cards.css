@@ -48,6 +48,11 @@
 
 .cards.events ul > li .cards-card-body:first-child p {
   margin: 0;
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  font-weight: 600;
 }
 
 .cards.events ul > li .cards-card-body:first-child p > strong {
@@ -58,14 +63,7 @@
   font-variant-numeric: tabular-nums;
   display: block;
   margin-bottom: 2px;
-}
-
-.cards.events ul > li .cards-card-body:first-child p {
-  font-size: 11px;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  color: var(--color-muted);
-  font-weight: 600;
+  letter-spacing: 0.3px;
 }
 
 .cards.events ul > li .cards-card-body:nth-child(2) > p:first-child > strong {
