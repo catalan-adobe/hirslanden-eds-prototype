@@ -46,6 +46,12 @@
   background: var(--color-primary-soft);
 }
 
+/* EDS auto-wraps cell text in <p>; default p margins blow up tab
+   height from source 70px to 104px. Strip margins inside the tab. */
+.tabs-bar .tab p {
+  margin: 0;
+}
+
 .tabs-bar .tab-label {
   font-size: 14px;
   font-weight: 600;
