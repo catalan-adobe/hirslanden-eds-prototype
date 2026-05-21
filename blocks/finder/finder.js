@@ -96,11 +96,14 @@ export default function decorate(block) {
 
   const actions = document.createElement('div');
   actions.className = 'finder-actions';
+  const hint = document.createElement('span');
+  hint.className = 'finder-hint';
+  hint.textContent = 'Tipp: Mehrere Filter kombinieren ist erlaubt.';
   const submit = document.createElement('button');
   submit.type = 'submit';
   submit.className = 'button primary';
   submit.textContent = 'Suchen';
-  actions.append(submit);
+  actions.append(hint, submit);
 
   form.append(grid, actions);
 
