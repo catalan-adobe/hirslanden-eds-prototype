@@ -28,6 +28,16 @@
   font-size: 14px;
 }
 
+/* Source has a global `img{max-width:100%;display:block}`. Without it,
+   the footer brand image sits inline and the parent's line-box adds a
+   baseline descender below — observed as 56px container vs 34px
+   image. Scope the rule to chrome to restore the source's collapsed
+   logo container. */
+.footer.block img {
+  max-width: 100%;
+  display: block;
+}
+
 .footer.block .wrap {
   max-width: 1280px;
   margin: 0 auto;
