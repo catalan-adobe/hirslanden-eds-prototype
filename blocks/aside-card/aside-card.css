@@ -1,0 +1,142 @@
+/*
+ * Hirslanden Variant C — aside-card block
+ * Sticky right-rail card with toc / facts / form variants.
+ */
+
+.aside-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  border: 1px solid var(--color-border);
+  position: sticky;
+  top: 96px;
+}
+
+.aside-card > div {
+  margin: 0;
+}
+
+.aside-card-title,
+.aside-card h4 {
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--color-text);
+  font-weight: 600;
+  margin: 0 0 14px;
+}
+
+.aside-card-body,
+.aside-card p {
+  font-size: 14px;
+  color: var(--color-muted);
+  margin: 0 0 14px;
+  line-height: 1.5;
+}
+
+.aside-card-footer {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--color-border);
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.aside-card-footer strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.aside-card a.button {
+  width: 100%;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+/* TOC variant — table of contents */
+.aside-card.toc ol,
+.aside-card.toc ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px;
+  font-size: 14px;
+}
+
+.aside-card.toc li {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.aside-card.toc li:last-child {
+  border-bottom: none;
+}
+
+.aside-card.toc a:any-link {
+  color: var(--color-primary-deep);
+}
+
+.aside-card.toc a:hover {
+  text-decoration: underline;
+}
+
+/* Facts variant — definition list of key/value pairs */
+.aside-card.facts dl {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin: 0;
+  font-size: 14px;
+}
+
+.aside-card.facts dt {
+  color: var(--color-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.8px;
+  padding: 8px 0 2px;
+}
+
+.aside-card.facts dt:first-of-type {
+  padding-top: 0;
+}
+
+.aside-card.facts dd {
+  margin: 0;
+  padding: 0 0 8px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.aside-card.facts dd:last-of-type {
+  border-bottom: none;
+}
+
+/* Form variant — basic styling; richer form support via Block
+   Collection's form block composed inside (future work). */
+.aside-card.form .field {
+  margin-bottom: 10px;
+}
+
+.aside-card.form .field label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.aside-card.form .field input,
+.aside-card.form .field textarea {
+  width: 100%;
+  padding: 11px 14px;
+  font-size: 15px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-input);
+  background: #fff;
+  color: var(--color-text);
+  font-family: inherit;
+  box-sizing: border-box;
+}
