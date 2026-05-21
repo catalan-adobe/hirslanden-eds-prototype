@@ -370,16 +370,37 @@ main .section.bg-secondary h3 {
   color: #fff;
 }
 
-/* Variant C — two-column section style: article + sticky aside */
+/* Variant C — two-column section style: article + sticky aside.
+   EDS wraps each block (and default content) in its own *-wrapper
+   that's a direct child of the section. We make the section itself a
+   2-col grid and pin .aside-card-wrapper to the right column,
+   spanning all rows. Everything else flows in the left column. */
 @media (width >= 980px) {
-  main .section.two-column > div {
+  main .section.two-column {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 320px;
-    gap: 48px;
+    gap: 0 48px;
     align-items: start;
+    max-width: 1280px;
+    margin: 40px auto;
+    padding: 0 32px;
   }
 
-  main .section.two-column > div > * {
+  /* Override the boilerplate's per-wrapper max-width + padding so the
+     wrappers act as bare grid items. */
+  main .section.two-column > div {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  main .section.two-column > .aside-card-wrapper {
+    grid-column: 2;
+    grid-row: 1 / 100;
+  }
+
+  main .section.two-column > *:not(.aside-card-wrapper) {
+    grid-column: 1;
     min-width: 0;
   }
 }
