@@ -72,10 +72,10 @@ export default function decorate(block) {
       const form = document.createElement('form');
       form.className = 'aside-form';
       form.addEventListener('submit', (e) => e.preventDefault());
-      form.innerHTML = `<label><span>Ihr Name</span><input type="text" name="name"></label>`
-        + `<label><span>Telefon</span><input type="tel" name="phone"></label>`
-        + `<label><span>Anliegen</span><textarea name="message" rows="3"></textarea></label>`
-        + `<button type="submit" class="button primary">Anfrage senden</button>`;
+      form.innerHTML = '<label><span>Ihr Name</span><input type="text" name="name"></label>'
+        + '<label><span>Telefon</span><input type="tel" name="phone"></label>'
+        + '<label><span>Anliegen</span><textarea name="message" rows="3"></textarea></label>'
+        + '<button type="submit" class="button primary">Anfrage senden</button>';
       placeholder.replaceWith(form);
     }
   }
