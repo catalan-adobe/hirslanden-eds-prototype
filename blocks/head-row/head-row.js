@@ -25,10 +25,11 @@ export default function decorate(block) {
     // Classify the first <p> (if it sits before the h2) as the eyebrow.
     const firstP = titleCell.querySelector(':scope > p:first-child, p:first-of-type');
     const h2 = titleCell.querySelector('h2');
-    // h2 comes after firstP in document order? compareDocumentPosition
-    // returns a bitmask; FOLLOWING (4) is set when h2 is after firstP.
-    if (firstP && h2 && (firstP.compareDocumentPosition(h2) >>> 2) % 2 === 1) {
-      firstP.classList.add('eyebrow');
+    // Classify firstP as the eyebrow if it appears in document order
+    // before the h2 sibling (the "eyebrow above headline" pattern).
+    if (firstP && h2) {
+      const order = [...titleCell.querySelectorAll('p, h2')];
+      if (order.indexOf(firstP) < order.indexOf(h2)) firstP.classList.add('eyebrow');
     }
   }
 
