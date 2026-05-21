@@ -86,7 +86,7 @@ main > .section.audience-tabs-container {
   align-items: start;
 }
 
-.atab-panel-lead p {
+.atab-panel .atab-panel-lead p {
   color: var(--color-muted);
   margin: 0 0 18px;
 }
@@ -103,7 +103,7 @@ main > .section.audience-tabs-container {
 /* paths column lays out its <ul> (the actual grid) and any leading
    <p> intros in normal flow. Earlier this had display:grid which
    double-nested with the inner ul grid and broke link widths. */
-.atab-panel-paths > p {
+.atab-panel .atab-panel-paths > p {
   margin: 0 0 10px;
 }
 
