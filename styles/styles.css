@@ -105,10 +105,12 @@ body.appear {
   display: block;
 }
 
-header {
-  height: var(--nav-height);
-}
-
+/* Header/footer chrome ships as static fragments loaded by blocks/header
+   and blocks/footer (snowflake-skill pattern). The boilerplate's fixed
+   --nav-height assumed a DA-authored nav block of known height; our
+   fragment is taller (utility strip + main nav), so let the EDS
+   <header> size naturally. visibility:hidden until the block reports
+   data-block-status="loaded" avoids the EDS chrome flash. */
 header .header,
 footer .footer {
   visibility: hidden;
