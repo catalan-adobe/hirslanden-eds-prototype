@@ -12,12 +12,20 @@
   box-sizing: border-box;
 }
 
+/* Source body declares line-height:1.55 and everything inherits. The
+   prototype's element-level h*/p rules set their own line-height,
+   shadowing a single `.footer.block { line-height: 1.55 }`. Apply per
+   descendant to win against `h5 { line-height: 1.25 }` etc. */
+.footer.block,
+.footer.block * {
+  line-height: 1.55;
+}
+
 .footer.block {
   background: #1f1c19;
   color: rgb(255 255 255 / 78%);
   padding: 56px 0 28px;
   font-size: 14px;
-  line-height: 1.55; /* source body line-height — prototype default is 1.6 */
 }
 
 .footer.block .wrap {
