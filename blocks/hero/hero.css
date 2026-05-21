@@ -22,21 +22,14 @@
   margin: 0 auto;
   width: 100%;
   min-height: 420px;
+  padding: 0 24px; /* matches source .wrap padding */
 }
 
 .hero-text {
-  padding: 32px 24px;
+  padding: 32px 0 24px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.hero-text > * {
-  margin: 0 0 14px;
-}
-
-.hero-text > *:last-child {
-  margin-bottom: 0;
 }
 
 .hero-text .eyebrow {
@@ -45,6 +38,7 @@
   text-transform: uppercase;
   color: var(--color-primary-deep);
   font-weight: 700;
+  margin: 0;
 }
 
 .hero-text h1 {
@@ -55,6 +49,8 @@
   color: var(--color-text);
   max-width: 560px;
   font-family: var(--heading-font-family);
+  margin: 14px 0 0; /* source: .hero h1 { margin-top: 14px } */
+  white-space: pre-line; /* source: respects \n in headline */
 }
 
 /* "named" variant — for heroes where the H1 is a proper noun
@@ -77,12 +73,20 @@
   color: var(--color-muted);
   max-width: 480px;
   line-height: 1.55;
-  margin-bottom: 24px;
+  margin: 18px 0 28px; /* matches source */
 }
 
-.hero-text .button-container {
-  margin: 0 8px 8px 0;
-  display: inline-block;
+/* CTA row: hero.js groups consecutive .button-wrapper into this div
+   to recreate the source's <div style="display:flex;gap:12px;flex-wrap:wrap">. */
+.hero-text .hero-cta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+.hero-text .hero-cta .button-wrapper {
+  margin: 0;
 }
 
 .hero-image {
@@ -134,7 +138,7 @@
   gap: 16px;
   border-top: 1.5px solid var(--color-border);
   padding-top: 24px;
-  margin-top: 16px;
+  margin-top: 8px; /* matches source .kpi-strip margin-top */
   max-width: 560px;
 }
 
@@ -222,7 +226,7 @@
   }
 
   .hero-text {
-    padding: 48px 32px 48px 40px;
+    padding: 48px 32px 48px 0; /* matches source — no left padding */
   }
 
   .hero-text h1 {

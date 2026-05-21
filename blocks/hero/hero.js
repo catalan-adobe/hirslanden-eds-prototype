@@ -52,6 +52,18 @@ export default function decorate(block) {
         lede.classList.add('lede');
       }
     }
+
+    // Group consecutive .button-wrapper paragraphs into a single flex
+    // container. Source HTML wraps the CTAs in
+    // <div style="display:flex;gap:12px;flex-wrap:wrap">; without this
+    // the boilerplate's <p class="button-wrapper"> stacks each button.
+    const wrappers = [...textCell.querySelectorAll(':scope > .button-wrapper')];
+    if (wrappers.length > 1) {
+      const cta = document.createElement('div');
+      cta.className = 'hero-cta';
+      wrappers[0].before(cta);
+      wrappers.forEach((w) => cta.append(w));
+    }
   }
 
   // KPI rows (rows 2..N): each is one (number | label) pair. Build a
