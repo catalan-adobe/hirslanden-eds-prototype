@@ -225,7 +225,7 @@ button.button {
   font-weight: 600;
   letter-spacing: 0.6px;
   text-transform: uppercase;
-  line-height: 1.25;
+  line-height: 1.55; /* matches source — button inherits body line-height */
   text-decoration: none;
   cursor: pointer;
   overflow: hidden;
