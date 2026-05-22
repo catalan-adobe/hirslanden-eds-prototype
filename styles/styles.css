@@ -386,6 +386,15 @@ main > .section > div {
   }
 }
 
+/* Hero and audience-tabs sections override the global 48px padding to
+   0 — matches source's `.hero{padding:0}` and `.audience{padding:0}`.
+   These two go edge-to-edge so their internal bgs (surface for hero,
+   white for audience) flow without a white gutter. */
+main > .section.hero-container,
+main > .section.audience-tabs-container {
+  padding: 0;
+}
+
 /* section metadata */
 main .section.light,
 main .section.highlight {
