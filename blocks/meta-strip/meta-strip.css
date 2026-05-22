@@ -28,6 +28,12 @@
   align-items: center;
 }
 
+/* EDS auto-wraps cell text in <p>; default p margins make each item
+   ~14px taller. Same root cause as audience-tabs/tabs. */
+.meta-strip-item p {
+  margin: 0;
+}
+
 .meta-strip-item strong {
   color: var(--color-text);
   font-weight: 600;
