@@ -1,0 +1,1477 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>290 pages → EDS in ~7 hours · Hirslanden migration case study</title>
+<meta name="description" content="From static HTML to Adobe Edge Delivery Services in roughly 7 hours of active work, with high visual fidelity at 1440px and a handful of documented gaps still on the open-thread list.">
+<style>
+  :root {
+    /* Variant C tokens — same palette as the migrated site */
+    --bg: #FFFFFF;
+    --surface: #F7F6F5;
+    --surface-2: #EFEDEA;
+    --ink: #534C46;
+    --ink-soft: #72665B;
+    --primary: #0094D4;
+    --primary-soft: #E5F2F8;
+    --primary-deep: #006FA0;
+    --secondary: #27455C;
+    --accent: #F43A11;
+    --border: #E5E1DC;
+    --radius: 8px;
+    --radius-lg: 16px;
+    --radius-pill: 999px;
+    --shadow-sm: 0 2px 8px -3px rgba(83,76,70,0.10);
+    --shadow-md: 0 12px 40px -16px rgba(83,76,70,0.25);
+    --maxw: 1180px;
+    --pad: 24px;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--primary-deep); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad); }
+
+  /* ========================= HERO ========================= */
+  .hero {
+    position: relative;
+    background:
+      radial-gradient(ellipse at 80% 20%, rgba(0,148,212,0.18) 0%, rgba(0,148,212,0) 60%),
+      radial-gradient(ellipse at 20% 80%, rgba(244,58,17,0.10) 0%, rgba(244,58,17,0) 55%),
+      linear-gradient(180deg, var(--secondary) 0%, #1B3142 100%);
+    color: #fff;
+    padding: 88px 0 120px;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
+    background-position: -1px -1px;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 75%);
+    -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 75%);
+  }
+  .hero .wrap { position: relative; }
+  .hero-eyebrow {
+    display: inline-block;
+    background: rgba(255,255,255,0.10);
+    color: #C8E6F4;
+    padding: 6px 12px;
+    border-radius: var(--radius-pill);
+    font-size: 12px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 28px;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .hero-h1 {
+    margin: 0 0 24px;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+    font-weight: 700;
+    max-width: 900px;
+  }
+  .hero-h1 .accent { color: var(--primary); }
+  .hero-h1 .strike { position: relative; }
+  .hero-h1 .strike::after {
+    content: ""; position: absolute; left: -2px; right: -2px; top: 55%;
+    height: 6px; background: var(--accent); transform: rotate(-2deg);
+    border-radius: 3px;
+  }
+  .hero-lede {
+    font-size: clamp(17px, 1.8vw, 21px);
+    line-height: 1.5;
+    max-width: 720px;
+    color: rgba(255,255,255,0.85);
+    margin: 0 0 40px;
+  }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 26px;
+    border-radius: var(--radius-pill);
+    font-weight: 600; font-size: 14px;
+    letter-spacing: 0.4px; text-transform: uppercase;
+    border: 1.5px solid transparent;
+    transition: transform 0.12s, background 0.15s, border-color 0.15s;
+  }
+  .btn:hover { text-decoration: none; transform: translateY(-1px); }
+  .btn-primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .btn-primary:hover { background: var(--primary-deep); border-color: var(--primary-deep); }
+  .btn-ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,0.30); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.08); }
+  .btn .arrow { font-size: 16px; }
+
+  /* ========================= STAT STRIP ========================= */
+  .stats {
+    position: relative;
+    margin-top: -56px;
+    margin-bottom: 80px;
+  }
+  .stats-grid {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: 32px 24px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    border: 1px solid var(--border);
+  }
+  @media (max-width: 820px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); padding: 24px 16px; }
+  }
+  .stat { text-align: center; padding: 8px 12px; }
+  .stat-n {
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 700;
+    color: var(--primary-deep);
+    line-height: 1;
+    letter-spacing: -0.5px;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-l {
+    margin-top: 8px;
+    font-size: 11px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+
+  /* ========================= SECTION ========================= */
+  section.pad { padding: 72px 0; }
+  section.bg-surface { background: var(--surface); }
+  .section-eyebrow {
+    font-size: 12px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--primary-deep);
+    font-weight: 700;
+    margin: 0 0 12px;
+  }
+  .section-h2 {
+    margin: 0 0 16px;
+    font-size: clamp(26px, 3vw, 36px);
+    line-height: 1.15;
+    letter-spacing: -0.3px;
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .section-lede {
+    font-size: 18px;
+    color: var(--ink-soft);
+    max-width: 720px;
+    margin: 0 0 40px;
+  }
+
+  /* ========================= SBS GALLERY ========================= */
+  .sbs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 980px) { .sbs-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .sbs-grid { grid-template-columns: 1fr; } }
+  .sbs-card {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.15s, box-shadow 0.15s;
+    cursor: zoom-in;
+    display: flex;
+    flex-direction: column;
+  }
+  .sbs-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .sbs-card .frame {
+    aspect-ratio: 16 / 11;
+    background: var(--surface);
+    overflow: hidden;
+    position: relative;
+  }
+  .sbs-card .frame img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+  .sbs-card .body {
+    padding: 16px 18px 20px;
+    border-top: 1px solid var(--border);
+  }
+  .sbs-card .label { font-weight: 700; color: var(--ink); font-size: 16px; }
+  .sbs-card .sub { font-size: 13px; color: var(--ink-soft); margin-top: 4px; }
+  .sbs-card .chip {
+    display: inline-block; margin-top: 10px;
+    background: var(--primary-soft); color: var(--primary-deep);
+    padding: 4px 10px; border-radius: var(--radius-pill);
+    font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  }
+
+  /* ========================= TIMELINE ========================= */
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+  }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 8px; top: 4px; bottom: 4px;
+    width: 2px; background: linear-gradient(180deg, var(--primary) 0%, var(--surface-2) 100%);
+    border-radius: 2px;
+  }
+  .phase {
+    position: relative;
+    padding: 0 0 28px 24px;
+  }
+  .phase::before {
+    content: "";
+    position: absolute;
+    left: -28px; top: 6px;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: #fff;
+    border: 3px solid var(--primary);
+    box-shadow: 0 0 0 4px var(--primary-soft);
+  }
+  .phase-num {
+    display: inline-block;
+    font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase;
+    font-weight: 700; color: var(--primary-deep);
+    background: var(--primary-soft); padding: 3px 8px; border-radius: 4px;
+    margin-bottom: 8px;
+  }
+  .phase-h { margin: 0 0 6px; font-size: 18px; font-weight: 700; color: var(--ink); }
+  .phase-d { margin: 0; color: var(--ink-soft); font-size: 15px; line-height: 1.55; max-width: 760px; }
+  .phase-d em { color: var(--primary-deep); font-style: normal; font-weight: 600; }
+  .phase-d code {
+    background: var(--surface-2); padding: 1px 6px; border-radius: 4px;
+    font-size: 0.9em; color: var(--ink); font-family: "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  /* ========================= PATTERNS GRID ========================= */
+  .patterns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 980px) { .patterns { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .patterns { grid-template-columns: 1fr; } }
+  .pattern {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px 24px;
+    transition: transform 0.15s, border-color 0.15s;
+  }
+  .pattern:hover { transform: translateY(-2px); border-color: var(--primary); }
+  .pattern .icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: var(--primary-soft);
+    color: var(--primary-deep);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 22px; font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .pattern-h { margin: 0 0 8px; font-size: 17px; font-weight: 700; color: var(--ink); }
+  .pattern-d { margin: 0; font-size: 14.5px; color: var(--ink-soft); line-height: 1.55; }
+
+  /* ========================= SESSIONS STRIP ========================= */
+  .sessions {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px 24px;
+    box-shadow: var(--shadow-sm);
+  }
+  .session-row,
+  .session-total {
+    display: grid;
+    grid-template-columns: 160px 240px 1fr;
+    gap: 20px;
+    align-items: center;
+    padding: 12px 0;
+  }
+  .session-total {
+    border-top: 2px solid var(--surface-2);
+    margin-top: 4px;
+    padding-top: 18px;
+  }
+  .session-when {
+    border-left: 3px solid var(--primary);
+    padding-left: 14px;
+  }
+  .session-day {
+    font-size: 12px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 700;
+  }
+  .session-time {
+    margin-top: 2px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .session-bar {
+    height: 16px;
+    background: var(--surface-2);
+    border-radius: var(--radius-pill);
+    overflow: hidden;
+    position: relative;
+  }
+  .session-fill {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    border-radius: var(--radius-pill);
+    /* Gantt-style: each session positioned where it falls in the
+       cumulative active timeline. Continuity makes the 4-session
+       chain feel like one connected effort. */
+    transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .session-meta { min-width: 0; }
+  .session-span {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .session-what {
+    margin-top: 2px;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+  .session-what em { color: var(--primary-deep); font-style: normal; font-weight: 600; }
+  .session-gap {
+    text-align: center;
+    padding: 10px 0;
+    font-size: 12px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 600;
+    border-top: 1px dashed var(--border);
+    border-bottom: 1px dashed var(--border);
+    margin: 6px 0;
+    background: linear-gradient(90deg, transparent 0%, var(--surface) 50%, transparent 100%);
+  }
+  .session-gap.night {
+    color: var(--secondary);
+    background: linear-gradient(90deg, transparent 0%, rgba(39,69,92,0.06) 50%, transparent 100%);
+  }
+  @media (max-width: 820px) {
+    .session-row, .session-total {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .session-bar { display: none; }
+  }
+
+  /* ========================= TIME BARS ========================= */
+  .time-row {
+    display: grid;
+    grid-template-columns: 200px 1fr 70px;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .time-row:last-child { border-bottom: none; }
+  .time-label { font-size: 14px; font-weight: 600; color: var(--ink); }
+  .time-bar {
+    height: 10px;
+    background: var(--surface-2);
+    border-radius: var(--radius-pill);
+    position: relative;
+  }
+  .time-bar > span {
+    display: block;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--primary-deep) 100%);
+    border-radius: var(--radius-pill);
+    /* Gantt-style: each phase positioned at its cumulative offset in
+       the total active timeline. */
+    transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .time-val { font-size: 13px; color: var(--ink-soft); text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+  @media (max-width: 720px) {
+    .time-row { grid-template-columns: 1fr; gap: 4px; padding: 12px 0; }
+    .time-val { text-align: left; }
+  }
+
+  /* ========================= TOOLS GRID ========================= */
+  .tools {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 980px) { .tools { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .tools { grid-template-columns: 1fr; } }
+  .tool-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px 22px;
+  }
+  .tool-card .cat {
+    font-size: 11px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--primary-deep);
+    font-weight: 700;
+    margin: 0 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tool-card .cat .badge {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    background: var(--primary-soft);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; color: var(--primary-deep);
+  }
+  .tool-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .tool-card li {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink);
+    padding-left: 14px;
+    position: relative;
+  }
+  .tool-card li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 9px;
+    width: 5px; height: 5px;
+    background: var(--primary);
+    border-radius: 50%;
+  }
+  .tool-card li strong {
+    color: var(--ink);
+    font-weight: 700;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    background: var(--surface-2);
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+  .tool-card li .role {
+    display: block;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 2px;
+  }
+
+  /* ========================= LINKS ========================= */
+  .link-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 720px) { .link-grid { grid-template-columns: 1fr; } }
+  .link-card {
+    display: flex; align-items: center; gap: 14px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .link-card:hover { border-color: var(--primary); transform: translateX(2px); text-decoration: none; }
+  .link-card .icon { color: var(--primary-deep); font-size: 22px; flex: none; }
+  .link-card .title { font-weight: 700; font-size: 15px; }
+  .link-card .sub { font-size: 13px; color: var(--ink-soft); margin-top: 2px; }
+  .link-card .arrow { margin-left: auto; color: var(--ink-soft); font-size: 18px; }
+
+  /* ========================= LIGHTBOX ========================= */
+  .lightbox {
+    position: fixed; inset: 0;
+    background: rgba(31, 28, 25, 0.92);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 32px;
+  }
+  .lightbox.is-open { display: flex; }
+  .lightbox img {
+    max-width: 100%; max-height: 100%;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+    border-radius: 4px;
+  }
+  .lightbox-close {
+    position: fixed; top: 20px; right: 20px;
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.20);
+    color: #fff;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .lightbox-close:hover { background: rgba(255,255,255,0.20); }
+
+  /* ========================= INFOGRAPHIC ========================= */
+  .infographic {
+    padding: 24px 0 56px;
+    background: var(--surface);
+  }
+  .ig-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 40px 36px;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+  }
+  .ig-card::before {
+    content: "";
+    position: absolute;
+    top: 0; right: 0;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle at top right, rgba(0,148,212,0.10) 0%, rgba(0,148,212,0) 60%);
+    pointer-events: none;
+  }
+  .ig-title {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+  }
+  .ig-eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--primary-deep);
+    font-weight: 700;
+    background: var(--primary-soft);
+    padding: 4px 10px;
+    border-radius: var(--radius-pill);
+  }
+  .ig-h2 {
+    margin: 14px 0 0;
+    font-size: clamp(24px, 2.8vw, 34px);
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--ink);
+    line-height: 1.15;
+  }
+  .ig-accent { color: var(--primary-deep); }
+
+  .ig-flow {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    gap: 24px;
+    align-items: center;
+    position: relative;
+  }
+
+  .ig-side { text-align: center; }
+  .ig-stack {
+    position: relative;
+    width: 140px;
+    height: 170px;
+    margin: 0 auto 16px;
+  }
+  .ig-page {
+    position: absolute;
+    width: 110px;
+    height: 150px;
+    border-radius: 6px;
+    background: #fff;
+    border: 1px solid var(--border);
+    box-sizing: border-box;
+  }
+  .ig-page.p3 { top: 16px; left: 26px; transform: rotate(4deg); background: var(--surface-2); }
+  .ig-page.p2 { top: 8px; left: 14px; transform: rotate(2deg); background: var(--surface); }
+  .ig-page.p1 {
+    top: 0; left: 0;
+    display: flex; flex-direction: column; gap: 5px;
+    padding: 14px 10px;
+    box-shadow: 0 8px 24px -10px rgba(83,76,70,0.20);
+  }
+  .ig-page-bar {
+    height: 7px;
+    background: var(--ink-soft);
+    opacity: 0.4;
+    border-radius: 2px;
+    margin-bottom: 4px;
+  }
+  .ig-page-line {
+    height: 4px;
+    background: var(--ink-soft);
+    opacity: 0.3;
+    border-radius: 2px;
+  }
+  .ig-page-line.short { width: 55%; }
+
+  /* EDS side: cyan branding */
+  .ig-stack-eds .ig-page.p3 { background: var(--primary-soft); opacity: 0.6; border-color: rgba(0,148,212,0.20); }
+  .ig-stack-eds .ig-page.p2 { background: rgb(229 242 248 / 80%); border-color: rgba(0,148,212,0.30); }
+  .ig-stack-eds .ig-page.p1 {
+    border-color: rgba(0,148,212,0.40);
+    box-shadow: 0 10px 30px -8px rgba(0,148,212,0.30);
+  }
+  .ig-stack-eds .ig-page-bar { background: var(--primary); opacity: 1; }
+  .ig-stack-eds .ig-page-line { background: var(--primary-deep); opacity: 0.35; }
+  .ig-stack-eds .ig-page-line.accent { background: var(--primary); opacity: 0.7; width: 70%; }
+
+  .ig-side-h {
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 14px;
+    letter-spacing: 0.2px;
+  }
+  .ig-side-d {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+    line-height: 1.45;
+  }
+
+  /* pipeline */
+  .ig-pipeline {
+    padding: 12px 12px 0;
+    position: relative;
+  }
+  .ig-nodes {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    position: relative;
+  }
+  .ig-nodes::before {
+    content: "";
+    position: absolute;
+    top: 23px; /* half of 48 circle */
+    left: 12.5%;
+    right: 12.5%;
+    border-top: 2px dashed var(--primary);
+    opacity: 0.5;
+    z-index: 0;
+  }
+  .ig-node { position: relative; z-index: 1; text-align: center; }
+  .ig-node-circle {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--primary);
+    color: var(--primary-deep);
+    font-weight: 700;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 4px var(--primary-soft);
+    margin-bottom: 12px;
+    font-variant-numeric: tabular-nums;
+  }
+  .ig-node-label {
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 14px;
+  }
+  .ig-node-sub {
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    margin-top: 2px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  /* between-side arrows */
+  .ig-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary);
+    font-size: 20px;
+    font-weight: 700;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .ig-arrow.left { left: 195px; }
+  .ig-arrow.right { right: 195px; }
+
+  /* chips */
+  .ig-chips {
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px dashed var(--border);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .ig-chip {
+    background: var(--primary-soft);
+    color: var(--primary-deep);
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+  }
+  .ig-chip.accent {
+    background: var(--secondary);
+    color: #fff;
+  }
+  .ig-time {
+    margin-left: 8px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (max-width: 820px) {
+    .ig-flow {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    .ig-arrow { display: none; }
+    .ig-chips { justify-content: flex-start; }
+    .ig-time { margin-left: 0; }
+  }
+
+  /* fade-in on scroll */
+  .fade { opacity: 0; transform: translateY(12px); transition: opacity 0.6s, transform 0.6s; }
+  .fade.in { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- ============== HERO ============== -->
+<header class="hero">
+  <div class="wrap">
+    <span class="hero-eyebrow">Migration case study · May 2026</span>
+    <h1 class="hero-h1">
+      290 static pages →
+      <span class="accent">Edge Delivery Services</span>
+      in <span class="strike">days</span> hours.
+    </h1>
+    <p class="hero-lede">
+      A German hospital-group's prototype site, 6 templates, 290 unique pages, hand-built in
+      static HTML. We migrated it to Adobe Edge Delivery Services in roughly
+      <strong>7 hours of active work</strong> across 4 sessions, with every block, section, and
+      chrome detail measured against the original at 1440px. The result is close — chrome
+      pixel-aligned, blocks within ±1–8px — with a handful of small gaps still on the
+      open-thread list.
+    </p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/" target="_blank">
+        See it live <span class="arrow">→</span>
+      </a>
+      <a class="btn btn-ghost" href="#sbs">Side-by-side comparisons</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============== STATS ============== -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat-n" data-target="290">290</div>
+        <div class="stat-l">Pages migrated</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n" data-target="6">6</div>
+        <div class="stat-l">Templates</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">~7<span style="font-size:0.5em;color:var(--ink-soft);font-weight:600;">h</span></div>
+        <div class="stat-l">Active work</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n" data-target="8">8</div>
+        <div class="stat-l">Custom blocks</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== INFOGRAPHIC (visual story panel) ============== -->
+<section class="infographic">
+  <div class="wrap">
+    <div class="ig-card">
+      <div class="ig-title">
+        <span class="ig-eyebrow">Migration journey · May 2026</span>
+        <h2 class="ig-h2">From static HTML to <span class="ig-accent">Edge Delivery Services</span></h2>
+      </div>
+
+      <div class="ig-flow">
+        <!-- LEFT: source -->
+        <div class="ig-side">
+          <div class="ig-stack">
+            <span class="ig-page p3"></span>
+            <span class="ig-page p2"></span>
+            <span class="ig-page p1">
+              <span class="ig-page-bar"></span>
+              <span class="ig-page-line"></span>
+              <span class="ig-page-line short"></span>
+              <span class="ig-page-line"></span>
+              <span class="ig-page-line short"></span>
+              <span class="ig-page-line"></span>
+            </span>
+          </div>
+          <div class="ig-side-h">Variant C static prototype</div>
+          <div class="ig-side-d">290 pages · 6 templates · hand-built HTML+CSS</div>
+        </div>
+
+        <span class="ig-arrow left">→</span>
+
+        <!-- MIDDLE: pipeline -->
+        <div class="ig-pipeline">
+          <div class="ig-nodes">
+            <div class="ig-node">
+              <div class="ig-node-circle">01</div>
+              <div class="ig-node-label">Audit</div>
+              <div class="ig-node-sub">MD5 cross-check</div>
+            </div>
+            <div class="ig-node">
+              <div class="ig-node-circle">02</div>
+              <div class="ig-node-label">Build</div>
+              <div class="ig-node-sub">8 blocks</div>
+            </div>
+            <div class="ig-node">
+              <div class="ig-node-circle">03</div>
+              <div class="ig-node-label">Emit</div>
+              <div class="ig-node-sub">bulk 290</div>
+            </div>
+            <div class="ig-node">
+              <div class="ig-node-circle">04</div>
+              <div class="ig-node-label">Measure</div>
+              <div class="ig-node-sub">getComputedStyle</div>
+            </div>
+          </div>
+        </div>
+
+        <span class="ig-arrow right">→</span>
+
+        <!-- RIGHT: EDS -->
+        <div class="ig-side">
+          <div class="ig-stack ig-stack-eds">
+            <span class="ig-page p3"></span>
+            <span class="ig-page p2"></span>
+            <span class="ig-page p1">
+              <span class="ig-page-bar"></span>
+              <span class="ig-page-line accent"></span>
+              <span class="ig-page-line"></span>
+              <span class="ig-page-line short"></span>
+              <span class="ig-page-line"></span>
+              <span class="ig-page-line short"></span>
+            </span>
+          </div>
+          <div class="ig-side-h">Edge Delivery Services</div>
+          <div class="ig-side-d">290 pages live · DA-backed · branch preview</div>
+        </div>
+      </div>
+
+      <div class="ig-chips">
+        <span class="ig-chip">Template-recipe driven</span>
+        <span class="ig-chip">EDS-native</span>
+        <span class="ig-chip">Measurement-driven</span>
+        <span class="ig-chip accent">Snowflake-pattern chrome</span>
+        <span class="ig-time">~7h active · 4 sessions · 79 commits</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== THE PITCH ============== -->
+<section class="pad">
+  <div class="wrap">
+    <p class="section-eyebrow">The pitch</p>
+    <h2 class="section-h2">Template-recipe driven, EDS-native, measurement-driven.</h2>
+    <p class="section-lede">
+      Phase 01's MD5 check showed 289 of 291 source pages share byte-identical CSS — a single
+      design system. That unlocked everything: build the block library once, validate per
+      template, bulk-emit the long tail. From there, the loop was tight: each pass against the
+      live source used <code style="background:var(--surface-2);padding:1px 6px;border-radius:4px;font-family:'SF Mono',Menlo,monospace;font-size:0.9em">getComputedStyle</code>
+      on every element to surface gaps screenshots missed.
+    </p>
+  </div>
+</section>
+
+<!-- ============== SBS GALLERY ============== -->
+<section id="sbs" class="pad bg-surface">
+  <div class="wrap">
+    <p class="section-eyebrow">The proof</p>
+    <h2 class="section-h2">Side-by-side, 1440px viewport, full page.</h2>
+    <p class="section-lede">
+      Original (left) and migrated (right) joined for every template. Click any thumbnail to
+      open at full size. Look for chrome, hero, section bands, breadcrumb, body content, and
+      footer — they line up closely, with a few small gaps still visible if you look hard
+      (tab heights ~8px, the odd sub-element margin).
+    </p>
+    <div class="sbs-grid">
+      <div class="sbs-card" data-img="sbs-home.jpg" data-label="Home">
+        <div class="frame"><img src="sbs-home.jpg" alt="Home — original vs migrated" loading="lazy"></div>
+        <div class="body">
+          <div class="label">Home</div>
+          <div class="sub">Hero · audience tabs · finder · cards · events</div>
+          <span class="chip">1 page</span>
+        </div>
+      </div>
+      <div class="sbs-card" data-img="sbs-doctor.jpg" data-label="Doctor">
+        <div class="frame"><img src="sbs-doctor.jpg" alt="Doctor — original vs migrated" loading="lazy"></div>
+        <div class="body">
+          <div class="label">Doctor profile</div>
+          <div class="sub">Portrait hero · meta-band · two-column body · form aside</div>
+          <span class="chip">150 pages</span>
+        </div>
+      </div>
+      <div class="sbs-card" data-img="sbs-fachgebiet.jpg" data-label="Fachgebiet">
+        <div class="frame"><img src="sbs-fachgebiet.jpg" alt="Fachgebiet — original vs migrated" loading="lazy"></div>
+        <div class="body">
+          <div class="label">Specialty (Fachgebiet)</div>
+          <div class="sub">Hero · KPIs · sub-nav tabs · A–Z list</div>
+          <span class="chip">50 pages</span>
+        </div>
+      </div>
+      <div class="sbs-card" data-img="sbs-krankheitsbild.jpg" data-label="Krankheitsbild">
+        <div class="frame"><img src="sbs-krankheitsbild.jpg" alt="Krankheitsbild — original vs migrated" loading="lazy"></div>
+        <div class="body">
+          <div class="label">Condition (Krankheitsbild)</div>
+          <div class="sub">Hero · meta-band · long-form article · TOC aside</div>
+          <span class="chip">50 pages</span>
+        </div>
+      </div>
+      <div class="sbs-card" data-img="sbs-news.jpg" data-label="News">
+        <div class="frame"><img src="sbs-news.jpg" alt="News — original vs migrated" loading="lazy"></div>
+        <div class="body">
+          <div class="label">News article</div>
+          <div class="sub">Article-hero band · article body · facts aside</div>
+          <span class="chip">25 pages</span>
+        </div>
+      </div>
+      <div class="sbs-card" data-img="sbs-jobs.jpg" data-label="Jobs">
+        <div class="frame"><img src="sbs-jobs.jpg" alt="Jobs — original vs migrated" loading="lazy"></div>
+        <div class="body">
+          <div class="label">Jobs &amp; Career</div>
+          <div class="sub">Hero · KPIs · content list</div>
+          <span class="chip">4 pages</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SOURCE CAVEATS ============== -->
+<section class="pad bg-surface">
+  <div class="wrap">
+    <p class="section-eyebrow">From the source itself · honest small print</p>
+    <h2 class="section-h2">What's different — and what was never there.</h2>
+    <p class="section-lede">
+      The source is a static design prototype, not a production site. Most things that look
+      interactive were never wired. Here's what we changed, what was never functional even in
+      the original, and what was simply absent from source HTML.
+    </p>
+
+    <div class="tools">
+      <div class="tool-card fade">
+        <p class="cat"><span class="badge">!</span> Changed from source</p>
+        <ul>
+          <li><strong>Finder selects → inputs</strong><span class="role">Source uses <code style="font-size:12px;">&lt;select&gt;</code> with real options ("Onkologie", "Allgemein/Halbprivat/Privat", "Deutsch/Französisch/Italienisch/Englisch"); migrated to <code style="font-size:12px;">&lt;input&gt;</code> with the first option as placeholder. <strong>The dropdown options are lost.</strong></span></li>
+          <li><strong>aria-current="page"</strong><span class="role">Active nav item highlight dropped — one static header fragment can't carry per-page state (ADR-0005). Source CSS doesn't style it anyway, so zero visual loss.</span></li>
+          <li><strong>data-section="…"</strong><span class="role">Source attaches this to every section (likely for analytics). Not preserved in EDS markup.</span></li>
+          <li><strong>Inline <code style="font-size:12px;">onclick</code> → addEventListener</strong><span class="role">CSP-safe rewrite of the hamburger toggle. Functionally identical.</span></li>
+        </ul>
+      </div>
+
+      <div class="tool-card fade">
+        <p class="cat"><span class="badge">~</span> Looks functional, but never was</p>
+        <ul>
+          <li><strong>Audience tabs</strong><span class="role">Patient·Familie / Zuweiser·Ärzteschaft / Karriere / International — source has <code style="font-size:12px;">role="tab"</code> + active styling but no JS handler. Visual-only in source too.</span></li>
+          <li><strong>Fachgebiet sub-nav tabs</strong><span class="role">Krankheitsbilder / Behandlungen / Zentren / Forschung / Ärzteschaft — same shape, same lack of handler.</span></li>
+          <li><strong>Finder search</strong><span class="role">Source <code style="font-size:12px;">action="/de/corporate/search.html"</code> targets a placeholder that doesn't serve search results.</span></li>
+          <li><strong>Doctor "Anfrage senden"</strong><span class="role">Source <code style="font-size:12px;">&lt;form&gt;</code> has no <code style="font-size:12px;">action</code> attribute → submit would do nothing.</span></li>
+          <li><strong>Search icon (⌕)</strong><span class="role">Header search link points at the same placeholder.</span></li>
+        </ul>
+      </div>
+
+      <div class="tool-card fade">
+        <p class="cat"><span class="badge">∅</span> Absent from source itself</p>
+        <ul>
+          <li><strong>Zero <code style="font-size:12px;">&lt;script&gt;</code> tags</strong><span class="role">No analytics, no GTM, no consent SDK, no service worker. Source is design-only.</span></li>
+          <li><strong>No Open Graph / Twitter cards</strong><span class="role">Not in source → not in ours either.</span></li>
+          <li><strong>No schema.org / JSON-LD</strong><span class="role">Zero structured data of any kind.</span></li>
+          <li><strong>No videos, iframes, embeds</strong><span class="role">Zero across all 290 pages.</span></li>
+          <li><strong>No blockquote, figure, details</strong><span class="role">CSS for these exists in source but no page actually uses them — long-form articles are paragraphs + h2/h3 only.</span></li>
+          <li><strong>No skip links, no noscript, no print CSS</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="margin-top:32px;padding:16px 20px;background:var(--surface);border-radius:var(--radius);font-size:14px;color:var(--ink);line-height:1.6;">
+      <strong>Net interpretation:</strong> the migration faithfully reproduces the source's
+      visual surface. The <em style="color:var(--primary-deep);font-style:normal;font-weight:600;">finder select → input change</em>
+      is the one place we genuinely degraded source content; everything else was already
+      decorative in the source. A production migration would need to add back: real
+      <code style="font-family:'SF Mono',Menlo,monospace;font-size:13px;background:var(--surface-2);padding:1px 5px;border-radius:3px;">&lt;select&gt;</code>
+      options, tab content switching, form submission backends, analytics, OG/schema metadata,
+      multi-language (DE/FR/EN), and parent listing pages.
+    </p>
+  </div>
+</section>
+
+<!-- ============== TIMELINE ============== -->
+<section class="pad">
+  <div class="wrap">
+    <p class="section-eyebrow">The arc · 11 phases</p>
+    <h2 class="section-h2">Audit → bootstrap → bulk → fidelity → chrome → polish.</h2>
+    <p class="section-lede">
+      Every phase has a journal entry written <em>during</em> the work. Here's the skim — full
+      narrative at <a href="https://github.com/catalan-adobe/hirslanden-eds-prototype/tree/eds-migration/docs/journal" target="_blank">docs/journal/</a>.
+    </p>
+
+    <div class="timeline">
+      <div class="phase fade">
+        <span class="phase-num">01 · Audit</span>
+        <h3 class="phase-h">HTML structure audit</h3>
+        <p class="phase-d">291 files, same boilerplate. <em>289 of 291 share byte-identical inline CSS</em>. Six body templates. The MD5 finding rerouted everything: a template-recipe migration was clearly going to win.</p>
+      </div>
+      <div class="phase fade">
+        <span class="phase-num">02 · Decision</span>
+        <h3 class="phase-h">EDS migration approach</h3>
+        <p class="phase-d">Picked <em>Approach A — template-recipe driven</em>. Documented as <a href="https://github.com/catalan-adobe/hirslanden-eds-prototype/blob/eds-migration/docs/decisions/0002-eds-migration-approach.md">ADR-0002</a>. Rejected the per-page <code>page-import</code> approach (290× slower).</p>
+      </div>
+      <div class="phase fade">
+        <span class="phase-num">03–04 · Foundation</span>
+        <h3 class="phase-h">Bootstrap + block library</h3>
+        <p class="phase-d">EDS project at <code>catalan-adobe/hirslanden-eds-prototype</code>, branch-workflow ADR set, 8 custom blocks built (hero, list-rows, head-row, aside-card, meta-strip, tabs, audience-tabs, finder) + extended cards.</p>
+      </div>
+      <div class="phase fade">
+        <span class="phase-num">05–07 · Pilots</span>
+        <h3 class="phase-h">Per-template pilots + first polish</h3>
+        <p class="phase-d">One page per template through the migration. First serious side-by-side. Caught the things you only notice at the seams: aside-card width, two-column grid, list-rows layout.</p>
+      </div>
+      <div class="phase fade">
+        <span class="phase-num">08 · Bulk</span>
+        <h3 class="phase-h">290 pages emitted + uploaded</h3>
+        <p class="phase-d"><code>migrate-bulk.mjs</code> + <code>post-bulk.mjs</code>. POSTed to DA via the admin API (concurrency 5), triggered previews. Fixed a slug-normalization gotcha (admin.hlx.page rejects <code>--</code>). <em>290/290 posted, 290/290 previewed</em>.</p>
+      </div>
+      <div class="phase fade">
+        <span class="phase-num">09 · First 1:1 audit</span>
+        <h3 class="phase-h">Five structural gaps caught</h3>
+        <p class="phase-d">User: <em>"close but not yet 1:1"</em>. Systematic side-by-side at 1440px caught: KPI strip position, hero image caption, article-body width, doctor form fields, events grid layout. Fixed and re-emitted.</p>
+      </div>
+      <div class="phase fade">
+        <span class="phase-num">10 · Chrome</span>
+        <h3 class="phase-h">Static header/footer via snowflake pattern</h3>
+        <p class="phase-d">Chrome ships as <code>fragments/*.html</code> + minimal block decorators. Replaced the boilerplate's 273-line header.css with the source's actual styling. <a href="https://github.com/catalan-adobe/hirslanden-eds-prototype/blob/eds-migration/docs/decisions/0005-static-chrome-via-snowflake.md">ADR-0005</a> documents the authorability/fidelity trade.</p>
+      </div>
+      <div class="phase fade">
+        <span class="phase-num">10.1 · Discovery</span>
+        <h3 class="phase-h">The 3 load-bearing source globals</h3>
+        <p class="phase-d">Computed-style audit caught 4 chrome bugs. Root cause was <em>three globals</em> source had but prototype didn't: <code>*{box-sizing:border-box}</code>, <code>body{line-height:1.55}</code>, <code>img{display:block}</code>. Phase 11 promoted them once → cascading gaps fixed across every block.</p>
+      </div>
+      <div class="phase fade">
+        <span class="phase-num">11 · Per-block sweep</span>
+        <h3 class="phase-h">Every block, computed-style audited</h3>
+        <p class="phase-d">Walked each of 8 blocks with <code>getComputedStyle</code> + <code>offsetHeight</code>. Found and fixed: button line-height (every button +4px), section wrapper widths (every block 96px wider), heading sizes globally, EDS auto-<code>&lt;p&gt;</code> margins in 4 separate blocks, cards date-col, meta-strip padding, finder Tipp hint.</p>
+      </div>
+      <div class="phase fade">
+        <span class="phase-num">11 · Sections</span>
+        <h3 class="phase-h">Section banding via metadata</h3>
+        <p class="phase-d">Three section-style variants emitted by the migration: <code>bg-surface</code> for schwerpunkte/events, <code>meta-band</code> (14px) for doctor/krankheitsbild thin strip, <code>article-hero-band</code> (32/24) for news. Backgrounds now fill full vertical bands matching source.</p>
+      </div>
+      <div class="phase fade">
+        <span class="phase-num">11.1 · Last gap</span>
+        <h3 class="phase-h">Breadcrumb closed</h3>
+        <p class="phase-d">JS-derived from <code>window.location.pathname</code> + page H1, appended inside <code>&lt;header&gt;</code>. 5-entry path-to-label map covers all template families. Home returns null (matches source).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PATTERNS ============== -->
+<section class="pad bg-surface">
+  <div class="wrap">
+    <p class="section-eyebrow">What made it work · 6 patterns</p>
+    <h2 class="section-h2">Methodology over magic.</h2>
+    <p class="section-lede">
+      Repeatable patterns — the kind worth carrying into the next migration.
+    </p>
+    <div class="patterns">
+      <div class="pattern fade">
+        <div class="icon">1</div>
+        <h3 class="pattern-h">Template-recipe was the right gamble</h3>
+        <p class="pattern-d">MD5-identical CSS across 289 pages meant build-once, bulk-emit. Without that finding from Phase 01, this would have been a 290× workflow.</p>
+      </div>
+      <div class="pattern fade">
+        <div class="icon">2</div>
+        <h3 class="pattern-h"><code style="font-size:0.95em;background:var(--primary-soft);color:var(--primary-deep);padding:1px 6px;border-radius:4px;">getComputedStyle</code> beats screenshots</h3>
+        <p class="pattern-d">Screenshots stop at "looks close". Computed-style measurement surfaces the ±2–8px discrepancies screenshots miss. We caught 16+ sub-pixel bugs that way; the remaining gaps are documented, not hidden.</p>
+      </div>
+      <div class="pattern fade">
+        <div class="icon">3</div>
+        <h3 class="pattern-h">3 source globals were load-bearing</h3>
+        <p class="pattern-d">box-sizing, line-height, img display — every block ported from source assumed them. Once promoted to <code>styles.css</code>, cascading gaps disappeared everywhere at once.</p>
+      </div>
+      <div class="pattern fade">
+        <div class="icon">4</div>
+        <h3 class="pattern-h">EDS auto-<code>&lt;p&gt;</code> is a recurring trap</h3>
+        <p class="pattern-d">EDS wraps cell text in <code>&lt;p&gt;</code> tags. Default p margins inflate any flex-layout block by ~14px per cell. Hit in 4 separate blocks. Fix shape: <code>.block p { margin: 0 }</code>.</p>
+      </div>
+      <div class="pattern fade">
+        <div class="icon">5</div>
+        <h3 class="pattern-h">Snowflake static-fragment pattern travels</h3>
+        <p class="pattern-d">Header, footer, breadcrumb all use the same shape: a static or computed HTML fragment fetched (or built) by a minimal block decorator. Worked for all three. <a href="https://github.com/catalan-adobe/hirslanden-eds-prototype/blob/eds-migration/docs/decisions/0005-static-chrome-via-snowflake.md">ADR-0005</a>.</p>
+      </div>
+      <div class="pattern fade">
+        <div class="icon">6</div>
+        <h3 class="pattern-h">Section padding ≠ margin</h3>
+        <p class="pattern-d">Source uses <code>padding: 48px 0</code> on sections so backgrounds fill the full vertical band. The boilerplate's default <code>margin: 40px 0</code> left bg only covering content. Once switched, the alternating-band rhythm became visible.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== TIME BREAKDOWN ============== -->
+<section class="pad">
+  <div class="wrap">
+    <p class="section-eyebrow">How fast — for real?</p>
+    <h2 class="section-h2">~6h 45min of active work across 4 sessions.</h2>
+    <p class="section-lede">
+      The wall-clock window was 21 hours (Thu 21 May 14:21 → Fri 22 May 11:24), but most of that
+      was overnight or breaks. Reconstructing from git commit timestamps (any gap longer than
+      60 minutes counted as a break) gives us <strong>~6h 45min of active work</strong> across
+      <strong>4 sessions</strong> — producing <strong>79 commits</strong> across 2 repos and
+      <strong>11 phases</strong> of documented work. The bars below are Gantt-style: each
+      session is positioned where it falls on the cumulative active-time line, so you can read
+      the continuity at a glance.
+    </p>
+
+    <!-- Sessions strip -->
+    <div class="sessions">
+      <div class="session-row fade">
+        <div class="session-when">
+          <div class="session-day">Thu · 21 May</div>
+          <div class="session-time">14:21 → 17:15</div>
+        </div>
+        <div class="session-bar"><div class="session-fill" style="left:0%;width:43%;background:linear-gradient(90deg,#0094D4 0%,#006FA0 100%);"></div></div>
+        <div class="session-meta">
+          <div class="session-span">2h 54min</div>
+          <div class="session-what">Bootstrap → 8 blocks → pilots → bulk-emit (290 pages) → first 1:1 audit → start of chrome</div>
+        </div>
+      </div>
+
+      <div class="session-gap"><span>▿ 3h 34min break (dinner / decompression)</span></div>
+
+      <div class="session-row fade">
+        <div class="session-when">
+          <div class="session-day">Thu · 21 May</div>
+          <div class="session-time">20:49 → 20:57</div>
+        </div>
+        <div class="session-bar"><div class="session-fill" style="left:43%;width:2%;background:linear-gradient(90deg,#0094D4 0%,#006FA0 100%);"></div></div>
+        <div class="session-meta">
+          <div class="session-span">8min</div>
+          <div class="session-what">Quick check-in: chrome docs commit, first strict-audit prep</div>
+        </div>
+      </div>
+
+      <div class="session-gap"><span>▿ 2h 10min break</span></div>
+
+      <div class="session-row fade">
+        <div class="session-when">
+          <div class="session-day">Thu · 21 May</div>
+          <div class="session-time">23:07 → 00:27</div>
+        </div>
+        <div class="session-bar"><div class="session-fill" style="left:45%;width:19.5%;background:linear-gradient(90deg,#0094D4 0%,#006FA0 100%);"></div></div>
+        <div class="session-meta">
+          <div class="session-span">1h 19min</div>
+          <div class="session-what">The <em>getComputedStyle</em> strict audit (4 chrome bugs) + 3 source globals fix + start of per-block sweep</div>
+        </div>
+      </div>
+
+      <div class="session-gap night"><span>🌙 8h 34min overnight</span></div>
+
+      <div class="session-row fade">
+        <div class="session-when">
+          <div class="session-day">Fri · 22 May</div>
+          <div class="session-time">09:01 → 11:24</div>
+        </div>
+        <div class="session-bar"><div class="session-fill" style="left:64.5%;width:35.5%;background:linear-gradient(90deg,#0094D4 0%,#006FA0 100%);"></div></div>
+        <div class="session-meta">
+          <div class="session-span">2h 23min</div>
+          <div class="session-what">Per-block sweep finish · sections styling · breadcrumb · showcase docs + this very page</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Per-phase bars -->
+    <h3 style="margin:56px 0 8px;font-size:18px;font-weight:700;color:var(--ink);">Per-phase active time (estimated from commit clusters)</h3>
+    <p class="section-lede" style="font-size:15px;margin-bottom:24px;">
+      Bar width is proportional to estimated active time. Bulk emission itself (290 pages POSTed +
+      previewed) is <strong>~3 minutes wall-clock</strong> — the bulk of "Phase 08" was building
+      the migration script, not running it.
+    </p>
+    <div>
+      <div class="time-row fade"><span class="time-label">01–02 · Audit + approach</span><div class="time-bar"><span style="left:0%;width:5.8%"></span></div><span class="time-val">~30min</span></div>
+      <div class="time-row fade"><span class="time-label">03 · Bootstrap</span><div class="time-bar"><span style="left:5.8%;width:2.9%"></span></div><span class="time-val">~15min</span></div>
+      <div class="time-row fade"><span class="time-label">04 · Block library (8 blocks)</span><div class="time-bar"><span style="left:8.7%;width:15.5%"></span></div><span class="time-val">~80min</span></div>
+      <div class="time-row fade"><span class="time-label">05–07 · Pilots + polish + home</span><div class="time-bar"><span style="left:24.3%;width:12.6%"></span></div><span class="time-val">~65min</span></div>
+      <div class="time-row fade"><span class="time-label">08 · Bulk emission script + run</span><div class="time-bar"><span style="left:36.9%;width:6.8%"></span></div><span class="time-val">~35min</span></div>
+      <div class="time-row fade"><span class="time-label">09 · First 1:1 audit (5 fixes)</span><div class="time-bar"><span style="left:43.7%;width:5.8%"></span></div><span class="time-val">~30min</span></div>
+      <div class="time-row fade"><span class="time-label">10 · Static chrome (snowflake)</span><div class="time-bar"><span style="left:49.5%;width:4.9%"></span></div><span class="time-val">~25min</span></div>
+      <div class="time-row fade"><span class="time-label">10.1 · Strict getComputedStyle audit</span><div class="time-bar"><span style="left:54.4%;width:9.7%"></span></div><span class="time-val">~50min</span></div>
+      <div class="time-row fade"><span class="time-label">11 · Per-block sweep (all 8)</span><div class="time-bar"><span style="left:64.1%;width:17.5%"></span></div><span class="time-val">~90min</span></div>
+      <div class="time-row fade"><span class="time-label">11 · Section styling + 11.1 breadcrumb</span><div class="time-bar"><span style="left:81.6%;width:6.8%"></span></div><span class="time-val">~35min</span></div>
+      <div class="time-row fade"><span class="time-label">X · Showcase + this page</span><div class="time-bar"><span style="left:88.3%;width:11.7%"></span></div><span class="time-val">~60min</span></div>
+    </div>
+
+    <p style="margin-top:32px;padding:16px 20px;background:var(--primary-soft);border-radius:var(--radius);font-size:14px;color:var(--primary-deep);">
+      <strong>The fast part is the loop, not the keystrokes.</strong> Of the ~7 hours active,
+      something like 60% was iterative measurement → fix → re-measure cycles. The migration
+      script + bulk runner combined are ~750 lines of code, written in roughly 90 minutes.
+      The remaining time was the discipline of holding every block to the same 1:1 bar.
+    </p>
+  </div>
+</section>
+
+<!-- ============== COLLAB MODEL ============== -->
+<section class="pad bg-surface">
+  <div class="wrap" style="max-width:900px;text-align:center;">
+    <p class="section-eyebrow">The collaboration model</p>
+    <h2 class="section-h2">A tight feedback loop — not AI alone, not human alone.</h2>
+    <p class="section-lede" style="margin:0 auto 32px;">
+      The human held the strict 1:1 bar (no "near-fidelity" accepted), picked the major
+      architectural moves, set the branch-workflow rule, and reviewed each phase before approving
+      the next. The AI ran the per-element measurements, wrote the migration scripts, ported
+      and scoped CSS, did the iterative gap-table loops, and kept the documentation in sync
+      with the work.
+    </p>
+    <p class="section-lede" style="margin:0 auto;color:var(--ink);font-weight:600;">
+      Every phase has a journal entry written <em>during</em> the phase, not after.
+      That's the real audit trail.
+    </p>
+  </div>
+</section>
+
+<!-- ============== TOOLS & SKILLS ============== -->
+<section class="pad">
+  <div class="wrap">
+    <p class="section-eyebrow">Tools &amp; skills used</p>
+    <h2 class="section-h2">EDS-native, with a few sharp instruments.</h2>
+    <p class="section-lede">
+      No build step on the EDS side. No custom infrastructure. Just the EDS ecosystem +
+      Node migration scripts + a headless browser for measurement + ImageMagick for the review
+      artifacts. The skills column lists what the agent consulted from the
+      <code style="background:var(--surface-2);padding:1px 6px;border-radius:4px;font-family:'SF Mono',Menlo,monospace;">.agents/skills/</code>
+      catalogue.
+    </p>
+
+    <div class="tools">
+      <!-- COLUMN 1: EDS ecosystem -->
+      <div class="tool-card fade">
+        <p class="cat"><span class="badge">A</span> Adobe / EDS ecosystem</p>
+        <ul>
+          <li><strong>Document Authoring (DA)</strong><span class="role">Content storage at <code style="font-size:12px;">da.live/#/catalan-adobe/hirslanden-eds-prototype</code></span></li>
+          <li><strong>aem.live / EDS</strong><span class="role">Delivery platform, branch previews at <code style="font-size:12px;">&lt;branch&gt;--&lt;repo&gt;--&lt;owner&gt;.aem.page</code></span></li>
+          <li><strong>admin.da.live</strong><span class="role">Source PUT API — bulk POST of 290 pages with concurrency 5</span></li>
+          <li><strong>admin.hlx.page</strong><span class="role">Preview/publish trigger API</span></li>
+          <li><strong>aem-code-sync</strong><span class="role">GitHub App auto-syncing the repo to the code bus</span></li>
+          <li><strong>aem-boilerplate</strong><span class="role">Base template the prototype repo extends</span></li>
+          <li><strong>aem-block-collection</strong><span class="role">Reusable vetted blocks (we extended <code style="font-size:12px;">cards</code>)</span></li>
+        </ul>
+      </div>
+
+      <!-- COLUMN 2: Skills consulted -->
+      <div class="tool-card fade">
+        <p class="cat"><span class="badge">B</span> Skills consulted</p>
+        <ul>
+          <li><strong>snowflake</strong><span class="role">Static-fragment chrome pattern adapted for header/footer/breadcrumb (ADR-0005)</span></li>
+          <li><strong>page-import</strong><span class="role">Considered as Approach B in ADR-0002 → rejected (290× workflow)</span></li>
+          <li><strong>eds-da-content</strong><span class="role">DA admin API contract, block HTML format, section-metadata reference</span></li>
+          <li><strong>create-site</strong><span class="role">Phase 03 EDS project bootstrap</span></li>
+          <li><strong>da-auth</strong><span class="role">IMS token cache (<code style="font-size:12px;">~/.aem/da-token.json</code>)</span></li>
+          <li><strong>building-blocks</strong><span class="role">Block decoration patterns referenced while building 8 custom blocks</span></li>
+          <li><strong>identify-page-structure</strong><span class="role">Phase 01 source audit (MD5 cross-file check)</span></li>
+          <li><strong>block-inventory</strong> + <strong>block-collection-and-party</strong><span class="role">Phase 04 block library research</span></li>
+        </ul>
+      </div>
+
+      <!-- COLUMN 3: Code + tooling -->
+      <div class="tool-card fade">
+        <p class="cat"><span class="badge">C</span> Code + tooling</p>
+        <ul>
+          <li><strong>migrate-to-eds.mjs</strong><span class="role">571 lines · per-page converter, uses node-html-parser</span></li>
+          <li><strong>migrate-bulk.mjs</strong><span class="role">95 lines · iterates site/*.html, slug normalization (admin.hlx.page rejects <code style="font-size:12px;">--</code>)</span></li>
+          <li><strong>post-bulk.mjs</strong><span class="role">98 lines · DA POST + preview trigger, concurrency-bounded worker pool</span></li>
+          <li><strong>8 custom blocks</strong><span class="role">hero, audience-tabs, finder, head-row, cards (events variant), list-rows, aside-card, meta-strip, tabs</span></li>
+          <li><strong>3 static fragments</strong><span class="role">fragments/{header,header-home,footer}.html</span></li>
+          <li><strong>Playwright MCP</strong><span class="role">Headless browser for <code style="font-size:12px;">getComputedStyle</code> audits + full-page screenshots</span></li>
+          <li><strong>ImageMagick</strong><span class="role">Side-by-side composition (<code style="font-size:12px;">audit/side-by-side/compose.sh</code>)</span></li>
+          <li><strong>Python</strong><span class="role">Commit-timestamp clustering for the active-time reconstruction</span></li>
+          <li><strong>Git</strong><span class="role">Feature branches, ADR workflow, journal-during-the-phase commits</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="margin-top:32px;padding:16px 20px;background:var(--surface);border-radius:var(--radius);font-size:14px;color:var(--ink);line-height:1.6;">
+      <strong>What we deliberately didn't use:</strong> no build step, no bundler, no
+      preprocessor, no CSS framework, no React/Vue, no Storybook, no design-tools handoff (the
+      design tokens were already in the source's inline <code style="font-family:'SF Mono',Menlo,monospace;font-size:13px;background:var(--surface-2);padding:1px 5px;border-radius:3px;">&lt;style&gt;</code>),
+      no theme system, no overlay engine, no `install-substrate.mjs`. The constraint was
+      <em style="color:var(--primary-deep);font-style:normal;font-weight:600;">stay as close
+      to plain EDS as possible</em> so the result is portable and the methodology is
+      reproducible.
+    </p>
+  </div>
+</section>
+
+<!-- ============== EXPLORE ============== -->
+<section class="pad">
+  <div class="wrap">
+    <p class="section-eyebrow">Explore</p>
+    <h2 class="section-h2">Walk the team through the artifacts.</h2>
+    <p class="section-lede">Skim → deep, in the suggested order.</p>
+    <div class="link-grid">
+      <a class="link-card" href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/" target="_blank">
+        <span class="icon">→</span>
+        <div>
+          <div class="title">Live branch preview</div>
+          <div class="sub">All 290 pages on eds-migration</div>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+      <a class="link-card" href="https://github.com/catalan-adobe/hirslanden-eds-prototype/tree/eds-migration/audit/side-by-side" target="_blank">
+        <span class="icon">▦</span>
+        <div>
+          <div class="title">Side-by-side images</div>
+          <div class="sub">audit/side-by-side/sbs-*.png</div>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+      <a class="link-card" href="https://github.com/catalan-adobe/hirslanden-eds-prototype/blob/eds-migration/docs/SHOWCASE.md" target="_blank">
+        <span class="icon">¶</span>
+        <div>
+          <div class="title">SHOWCASE.md</div>
+          <div class="sub">The long-form narrative</div>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+      <a class="link-card" href="https://github.com/catalan-adobe/hirslanden-eds-prototype/blob/eds-migration/docs/README.md" target="_blank">
+        <span class="icon">⌘</span>
+        <div>
+          <div class="title">Docs index</div>
+          <div class="sub">Journals · ADRs · discoveries</div>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+      <a class="link-card" href="https://github.com/catalan-adobe/hirslanden-eds-prototype/blob/eds-migration/docs/journal/11-block-fidelity.md" target="_blank">
+        <span class="icon">∴</span>
+        <div>
+          <div class="title">Phase 11 journal</div>
+          <div class="sub">The deepest single phase — see the gap-table methodology</div>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+      <a class="link-card" href="https://github.com/catalan-adobe/hirslanden-eds-prototype" target="_blank">
+        <span class="icon">⌥</span>
+        <div>
+          <div class="title">EDS prototype repo</div>
+          <div class="sub">github.com/catalan-adobe/hirslanden-eds-prototype</div>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== LIGHTBOX ============== -->
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Side-by-side comparison">
+  <button class="lightbox-close" aria-label="Close">×</button>
+  <img id="lightbox-img" alt="">
+</div>
+
+<script>
+  // Lightbox
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  document.querySelectorAll('.sbs-card').forEach((card) => {
+    card.addEventListener('click', () => {
+      lbImg.src = card.dataset.img;
+      lbImg.alt = card.dataset.label + ' — full comparison';
+      lb.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  const closeLb = () => { lb.classList.remove('is-open'); document.body.style.overflow = ''; };
+  lb.querySelector('.lightbox-close').addEventListener('click', closeLb);
+  lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('is-open')) closeLb(); });
+
+  // Fade-in on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade').forEach((el) => io.observe(el));
+
+  // Count-up for stats
+  const countUp = (el, target, durationMs = 900) => {
+    const start = performance.now();
+    const tick = (t) => {
+      const p = Math.min(1, (t - start) / durationMs);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased);
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+  const statIo = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting && e.target.dataset.target) {
+        countUp(e.target, parseInt(e.target.dataset.target, 10));
+        statIo.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.stat-n[data-target]').forEach((el) => statIo.observe(el));
+</script>
+
+</body>
+</html>
