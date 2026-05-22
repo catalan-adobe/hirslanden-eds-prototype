@@ -395,6 +395,13 @@ main > .section.audience-tabs-container {
   padding: 0;
 }
 
+/* Doctor + krankheitsbild meta-strip lives in a thin bg-surface band.
+   Source overrides .section padding to 14px 0 — without this, the
+   default 48px would make the meta-strip area 4x too tall. */
+main > .section.meta-band {
+  padding: 14px 0;
+}
+
 /* section metadata */
 main .section.light,
 main .section.highlight {
