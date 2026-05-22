@@ -404,6 +404,12 @@ main > .section.bg-surface.meta-band {
   padding: 14px 0;
 }
 
+/* News template article-hero band — source has asymmetric padding
+   32px top / 24px bottom on this bg-surface section. */
+main > .section.bg-surface.article-hero-band {
+  padding: 32px 0 24px;
+}
+
 /* section metadata */
 main .section.light,
 main .section.highlight {
