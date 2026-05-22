@@ -154,6 +154,10 @@ header > nav.crumb .wrap {
   flex-wrap: wrap;
 }
 
+/* stylelint-disable no-descending-specificity --
+   the `.header.block .utility a` rule above has higher specificity
+   but targets a different element (the utility-strip links, not the
+   breadcrumb links). No actual cascade conflict. */
 header > nav.crumb a {
   color: var(--color-muted);
   text-decoration: none;
@@ -162,6 +166,7 @@ header > nav.crumb a {
 header > nav.crumb a:hover {
   color: var(--color-primary-deep);
 }
+/* stylelint-enable no-descending-specificity */
 
 header > nav.crumb .sep {
   opacity: 0.5;
