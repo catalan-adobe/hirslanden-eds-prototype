@@ -1,20 +1,118 @@
-footer {
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
+/* Static footer fragment styling — ported from the source site's inline
+   stylesheet (footer section). Rules are scoped under .footer.block to
+   keep them from leaking outside the chrome. */
+
+/* Source CSS was written under a global *{box-sizing:border-box} reset;
+   our prototype only applies border-box to buttons. Scope the reset to
+   the chrome so .wrap max-width-with-padding behaves like the source. */
+.footer.block,
+.footer.block *,
+.footer.block *::before,
+.footer.block *::after {
+  box-sizing: border-box;
 }
 
-footer .footer > div {
-  margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+/* Source body declares line-height:1.55 and everything inherits. The
+   prototype's element-level h-tag and p rules set their own
+   line-height, shadowing a single `.footer.block { line-height: 1.55 }`.
+   Apply per descendant to win against `h5 { line-height: 1.25 }` etc. */
+.footer.block,
+.footer.block * {
+  line-height: 1.55;
 }
 
-footer .footer p {
+.footer.block {
+  background: #1f1c19;
+  color: rgb(255 255 255 / 78%);
+  padding: 56px 0 28px;
+  font-size: 14px;
+}
+
+/* Source has a global `img{max-width:100%;display:block}`. Without it,
+   the footer brand image sits inline and the parent's line-box adds a
+   baseline descender below — observed as 56px container vs 34px
+   image. Scope the rule to chrome to restore the source's collapsed
+   logo container. */
+.footer.block img {
+  max-width: 100%;
+  display: block;
+}
+
+.footer.block .wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.footer.block .grid {
+  display: grid;
+  grid-template-columns: 1.4fr repeat(4, 1fr);
+  gap: 32px;
+}
+
+.footer.block h5 {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: #fff;
+  font-weight: 600;
+  margin: 0 0 14px;
+}
+
+.footer.block ul {
+  list-style: none;
+  padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-@media (width >= 900px) {
-  footer .footer > div {
-    padding: 40px 32px 24px;
+.footer.block a {
+  color: rgb(255 255 255 / 78%);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.footer.block a:hover {
+  color: #fff;
+}
+
+.footer.block .f-brand .logo-w img {
+  filter: brightness(0) invert(1);
+  height: 34px;
+  width: auto;
+  margin-bottom: 16px;
+}
+
+.footer.block .f-brand p {
+  font-size: 13px;
+  color: rgb(255 255 255 / 60%);
+  max-width: 280px;
+  margin: 0 0 12px;
+}
+
+.footer.block .f-brand .phone {
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.3px;
+}
+
+.footer.block .f-bottom {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid rgb(255 255 255 / 12%);
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: rgb(255 255 255 / 50%);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@media (width <= 820px) {
+  .footer.block .grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

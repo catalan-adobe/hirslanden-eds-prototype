@@ -1,0 +1,148 @@
+/*
+ * Hirslanden Variant C — finder block (home)
+ * Search card with tabs + grid of fields + submit, plus a lead intro.
+ */
+
+.finder {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.finder-lead {
+  color: inherit;
+}
+
+.finder-lead h2 {
+  color: inherit;
+  margin: 0 0 14px;
+}
+
+.finder-lead > p:first-child {
+  font-size: 13px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--color-primary-deep);
+  margin: 0 0 10px;
+}
+
+.finder-lead > p:not(:first-child) {
+  margin: 14px 0 0;
+  max-width: 360px;
+  font-size: 15px;
+  color: var(--color-muted);
+}
+
+/* When placed in a section with bg-secondary, the lead text goes white */
+.bg-secondary .finder-lead {
+  color: #fff;
+}
+
+.bg-secondary .finder-lead > p:first-child {
+  color: rgb(131 200 229);
+}
+
+.bg-secondary .finder-lead > p:not(:first-child) {
+  color: rgb(255 255 255 / 85%);
+}
+
+.finder-card {
+  background: #fff;
+  color: var(--color-text);
+  border-radius: var(--radius-card);
+  padding: 24px;
+}
+
+.finder-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--color-border);
+  flex-wrap: wrap;
+}
+
+.finder-tab {
+  padding: 10px 16px;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  cursor: pointer;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  background: none;
+  font-family: inherit;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.finder-tab:hover {
+  color: var(--color-text);
+}
+
+.finder-tab.is-active {
+  color: var(--color-primary-deep);
+  border-bottom-color: var(--color-primary);
+}
+
+.finder-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.finder-field label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.finder-field input {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 15px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-input);
+  background: #fff;
+  color: var(--color-text);
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.finder-field input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.finder-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.finder-hint {
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
+@media (width <= 980px) {
+  .finder {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (width <= 560px) {
+  .finder-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>All 290 migrated pages · Hirslanden EDS migration</title>
+<meta name="description" content="Fixed list of all 290 pages migrated to Adobe Edge Delivery Services — grouped by template, every link opens the live branch preview.">
+<style>
+  :root {
+    --bg: #FFFFFF; --surface: #F7F6F5; --surface-2: #EFEDEA;
+    --ink: #534C46; --ink-soft: #72665B;
+    --primary: #0094D4; --primary-soft: #E5F2F8; --primary-deep: #006FA0;
+    --secondary: #27455C; --accent: #F43A11; --border: #E5E1DC;
+    --radius: 8px; --radius-lg: 16px; --radius-pill: 999px;
+    --shadow-sm: 0 2px 8px -3px rgba(83,76,70,0.10);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+    color: var(--ink); background: var(--bg); font-size: 15px; line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--primary-deep); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+  /* ============ HERO ============ */
+  header.hero {
+    background:
+      radial-gradient(ellipse at 80% 20%, rgba(0,148,212,0.18) 0%, rgba(0,148,212,0) 60%),
+      linear-gradient(180deg, var(--secondary) 0%, #1B3142 100%);
+    color: #fff;
+    padding: 56px 0 96px;
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    background: rgba(255,255,255,0.10);
+    color: #C8E6F4;
+    padding: 5px 12px;
+    border-radius: var(--radius-pill);
+    font-size: 11px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 18px;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  h1.hero-h1 {
+    margin: 0 0 14px;
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1.1;
+    letter-spacing: -0.4px;
+    font-weight: 700;
+    max-width: 800px;
+  }
+  .hero-h1 .accent { color: var(--primary); }
+  .hero-lede {
+    margin: 0 0 28px;
+    font-size: 17px;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.82);
+    max-width: 720px;
+  }
+  .hero-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.85);
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    border-radius: var(--radius-pill);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .hero-back:hover { background: rgba(255,255,255,0.12); text-decoration: none; }
+
+  /* ============ STAT STRIP ============ */
+  .stats {
+    margin-top: -56px;
+    margin-bottom: 56px;
+  }
+  .stats-grid {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 12px 40px -16px rgba(83,76,70,0.25);
+    padding: 24px 16px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 8px;
+    border: 1px solid var(--border);
+  }
+  @media (max-width: 980px) {
+    .stats-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  .stat-cell {
+    text-align: center; padding: 6px 8px;
+    border-right: 1px solid var(--border);
+  }
+  .stat-cell:last-child { border-right: 0; }
+  @media (max-width: 980px) {
+    .stat-cell:nth-child(4) { border-right: 0; }
+  }
+  @media (max-width: 560px) {
+    .stat-cell:nth-child(2n) { border-right: 0; }
+  }
+  .stat-n {
+    font-size: clamp(22px, 2.4vw, 32px);
+    font-weight: 700;
+    color: var(--primary-deep);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-l {
+    margin-top: 6px;
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+
+  /* ============ FILTER ============ */
+  .filter {
+    margin-bottom: 32px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .filter input {
+    flex: 1;
+    min-width: 240px;
+    padding: 10px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-pill);
+    background: #fff;
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 14px;
+  }
+  .filter input:focus { outline: none; border-color: var(--primary); }
+  .filter-tag {
+    padding: 6px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+    cursor: pointer;
+    user-select: none;
+  }
+  .filter-tag.is-active {
+    background: var(--primary-deep);
+    border-color: var(--primary-deep);
+    color: #fff;
+  }
+  .filter-count {
+    margin-left: auto;
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ============ GROUPS ============ */
+  .group { margin-bottom: 48px; }
+  .group.is-hidden { display: none; }
+  .group-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .group-icon {
+    flex: none;
+    width: 48px; height: 48px;
+    border-radius: var(--radius);
+    background: var(--primary-soft);
+    color: var(--primary-deep);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .group-eyebrow {
+    margin: 0;
+    font-size: 11px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 700;
+  }
+  .group-h {
+    margin: 4px 0 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.2px;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .group-count {
+    font-size: 14px;
+    color: var(--primary-deep);
+    background: var(--primary-soft);
+    padding: 2px 10px;
+    border-radius: var(--radius-pill);
+    font-weight: 700;
+  }
+
+  .page-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px 24px;
+  }
+  @media (max-width: 720px) {
+    .page-list { grid-template-columns: 1fr; }
+  }
+  .page-list li.is-hidden { display: none; }
+  .page-list a {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 14px;
+    border-radius: var(--radius);
+    border: 1px solid transparent;
+    color: var(--ink);
+    transition: border-color 0.12s, background-color 0.12s;
+  }
+  .page-list a:hover {
+    border-color: var(--primary);
+    background: var(--primary-soft);
+    text-decoration: none;
+  }
+  .page-title { font-size: 14px; font-weight: 600; color: var(--ink); }
+  .page-list a:hover .page-title { color: var(--primary-deep); }
+  .page-slug {
+    margin-top: 2px;
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ============ FOOTER NOTE ============ */
+  .note {
+    margin: 56px 0 80px;
+    padding: 18px 22px;
+    background: var(--surface);
+    border-radius: var(--radius);
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .note strong { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="hero-eyebrow">All migrated pages · live on EDS</span>
+    <h1 class="hero-h1"><span class="accent">290</span> pages, every one reachable.</h1>
+    <p class="hero-lede">Fixed list of every page from the Hirslanden Variant C static prototype that now lives on Adobe Edge Delivery Services. Grouped by template. Every link opens the live branch preview in a new tab.</p>
+    <a class="hero-back" href="index.html">←&nbsp;&nbsp;Back to the showcase</a>
+  </div>
+</header>
+
+<section class="stats">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat-cell"><div class="stat-n">1</div><div class="stat-l">Home</div></div>
+      <div class="stat-cell"><div class="stat-n">150</div><div class="stat-l">Doctors</div></div>
+      <div class="stat-cell"><div class="stat-n">50</div><div class="stat-l">Fachgebiete</div></div>
+      <div class="stat-cell"><div class="stat-n">50</div><div class="stat-l">Krankheits.</div></div>
+      <div class="stat-cell"><div class="stat-n">25</div><div class="stat-l">News</div></div>
+      <div class="stat-cell"><div class="stat-n">4</div><div class="stat-l">Jobs</div></div>
+      <div class="stat-cell"><div class="stat-n">5</div><div class="stat-l">Kliniken</div></div>
+      <div class="stat-cell"><div class="stat-n">5</div><div class="stat-l">Über uns</div></div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+  <div class="filter">
+    <input type="text" id="q" placeholder="Filter by title or slug…" autocomplete="off">
+    <button class="filter-tag is-active" data-tpl="all">All</button>
+    <button class="filter-tag" data-tpl="home">Home</button>
+    <button class="filter-tag" data-tpl="doctor">Doctors</button>
+    <button class="filter-tag" data-tpl="fachgebiet">Fachgebiete</button>
+    <button class="filter-tag" data-tpl="krankheitsbild">Krankheits.</button>
+    <button class="filter-tag" data-tpl="news">News</button>
+    <button class="filter-tag" data-tpl="jobs">Jobs</button>
+    <button class="filter-tag" data-tpl="kliniken">Kliniken</button>
+    <button class="filter-tag" data-tpl="ueber-uns">Über uns</button>
+    <span class="filter-count" id="count">290 of 290</span>
+  </div>
+
+  <section class="group" data-template="home">
+    <div class="group-head">
+      <span class="group-icon">⌂</span>
+      <div>
+        <p class="group-eyebrow">Hirslanden Switzerland · landing page</p>
+        <h2 class="group-h">Home <span class="group-count">1</span></h2>
+      </div>
+    </div>
+    <ul class="page-list">
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/" target="_blank"><span class="page-title">Home — Kompetenz, die Vertrauen schafft</span><span class="page-slug">/index</span></a></li>
+    </ul>
+  </section>
+
+  <section class="group" data-template="doctor">
+    <div class="group-head">
+      <span class="group-icon">◉</span>
+      <div>
+        <p class="group-eyebrow">Ärzte · 150 doctors</p>
+        <h2 class="group-h">Doctor profiles <span class="group-count">150</span></h2>
+      </div>
+    </div>
+    <ul class="page-list">
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/docteur-armen-momjian" target="_blank"><span class="page-title">Docteur Armen Momjian</span><span class="page-slug">/de/corporate/aerzte/3/docteur-armen-momjian</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/docteur-aymen-kraiem-ben-rached" target="_blank"><span class="page-title">Docteur Aymen Kraiem Ben Rached</span><span class="page-slug">/de/corporate/aerzte/3/docteur-aymen-kraiem-ben-rached</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/docteur-benjamin-gold" target="_blank"><span class="page-title">Docteur Benjamin Gold</span><span class="page-slug">/de/corporate/aerzte/2/docteur-benjamin-gold</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/docteur-benjamin-schaer" target="_blank"><span class="page-title">Docteur Benjamin Schaer</span><span class="page-slug">/de/corporate/aerzte/3/docteur-benjamin-schaer</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/docteur-charbel-rahban" target="_blank"><span class="page-title">Docteur Charbel Rahban</span><span class="page-slug">/de/corporate/aerzte/4/docteur-charbel-rahban</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/1/docteur-christian-jaccard" target="_blank"><span class="page-title">Docteur Christian Jaccard</span><span class="page-slug">/de/corporate/aerzte/1/docteur-christian-jaccard</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/docteur-christophe-huehn" target="_blank"><span class="page-title">Docteur Christophe Huehn</span><span class="page-slug">/de/corporate/aerzte/2/docteur-christophe-huehn</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/docteur-christopher-van-issum" target="_blank"><span class="page-title">Docteur Christopher van Issum</span><span class="page-slug">/de/corporate/aerzte/4/docteur-christopher-van-issum</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/docteur-cristian-ghinescu" target="_blank"><span class="page-title">Docteur Cristian Ghinescu</span><span class="page-slug">/de/corporate/aerzte/4/docteur-cristian-ghinescu</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/docteur-david-finci" target="_blank"><span class="page-title">Docteur David Finci</span><span class="page-slug">/de/corporate/aerzte/3/docteur-david-finci</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/docteur-didier-locca" target="_blank"><span class="page-title">Docteur Didier Locca</span><span class="page-slug">/de/corporate/aerzte/3/docteur-didier-locca</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/docteur-enrico-broennimann" target="_blank"><span class="page-title">Docteur Enrico Brönnimann</span><span class="page-slug">/de/corporate/aerzte/4/docteur-enrico-broennimann</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/docteur-guillaume-liegeois" target="_blank"><span class="page-title">Docteur Guillaume Liégeois</span><span class="page-slug">/de/corporate/aerzte/4/docteur-guillaume-liegeois</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/1/docteur-jacques-blanchard" target="_blank"><span class="page-title">Docteur Jacques Blanchard</span><span class="page-slug">/de/corporate/aerzte/1/docteur-jacques-blanchard</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/docteur-jacques-paul-steiner" target="_blank"><span class="page-title">Docteur Jacques Paul Steiner</span><span class="page-slug">/de/corporate/aerzte/2/docteur-jacques-paul-steiner</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/docteur-jean-locher" target="_blank"><span class="page-title">Docteur Jean Locher</span><span class="page-slug">/de/corporate/aerzte/2/docteur-jean-locher</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/docteur-jean-christophe-bijon" target="_blank"><span class="page-title">Docteur Jean-Christophe Bijon</span><span class="page-slug">/de/corporate/aerzte/2/docteur-jean-christophe-bijon</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/docteur-julien-chevreau" target="_blank"><span class="page-title">Docteur Julien Chevreau</span><span class="page-slug">/de/corporate/aerzte/4/docteur-julien-chevreau</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/docteur-konstantinos-vakalopoulos" target="_blank"><span class="page-title">Docteur Konstantinos Vakalopoulos</span><span class="page-slug">/de/corporate/aerzte/4/docteur-konstantinos-vakalopoulos</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/docteur-maud-camp-wachsmuth" target="_blank"><span class="page-title">Docteur Maud Camp Wachsmuth</span><span class="page-slug">/de/corporate/aerzte/3/docteur-maud-camp-wachsmuth</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/docteur-michel-grobety" target="_blank"><span class="page-title">Docteur Michel Grobéty</span><span class="page-slug">/de/corporate/aerzte/3/docteur-michel-grobety</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/docteur-nicolas-defabiani" target="_blank"><span class="page-title">Docteur Nicolas Defabiani</span><span class="page-slug">/de/corporate/aerzte/2/docteur-nicolas-defabiani</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/docteur-noemie-assir-forsyth" target="_blank"><span class="page-title">Docteur Noémie Assir Forsyth</span><span class="page-slug">/de/corporate/aerzte/4/docteur-noemie-assir-forsyth</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/docteur-nurullah-aslan" target="_blank"><span class="page-title">Docteur Nurullah Aslan</span><span class="page-slug">/de/corporate/aerzte/4/docteur-nurullah-aslan</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/docteur-patrizia-nardo" target="_blank"><span class="page-title">Docteur Patrizia Nardo</span><span class="page-slug">/de/corporate/aerzte/3/docteur-patrizia-nardo</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/docteur-pd-fabio-rigamonti" target="_blank"><span class="page-title">Docteur PD Fabio Rigamonti</span><span class="page-slug">/de/corporate/aerzte/3/docteur-pd-fabio-rigamonti</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/1/docteur-philippe-bracher" target="_blank"><span class="page-title">Docteur Philippe Bracher</span><span class="page-slug">/de/corporate/aerzte/1/docteur-philippe-bracher</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/1/docteur-pierre-bohanes" target="_blank"><span class="page-title">Docteur Pierre Bohanes</span><span class="page-slug">/de/corporate/aerzte/1/docteur-pierre-bohanes</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/docteur-pierre-alexandre-laurencet" target="_blank"><span class="page-title">Docteur Pierre-Alexandre Laurencet</span><span class="page-slug">/de/corporate/aerzte/2/docteur-pierre-alexandre-laurencet</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/docteur-pierre-yves-jayet" target="_blank"><span class="page-title">Docteur Pierre-Yves Jayet</span><span class="page-slug">/de/corporate/aerzte/3/docteur-pierre-yves-jayet</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/docteur-raymond-bandelier" target="_blank"><span class="page-title">Docteur Raymond Bandelier</span><span class="page-slug">/de/corporate/aerzte/2/docteur-raymond-bandelier</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/docteur-renato-gondar" target="_blank"><span class="page-title">Docteur Renato Gondar</span><span class="page-slug">/de/corporate/aerzte/4/docteur-renato-gondar</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/docteur-rodrigo-de-sousa" target="_blank"><span class="page-title">Docteur Rodrigo de Sousa</span><span class="page-slug">/de/corporate/aerzte/2/docteur-rodrigo-de-sousa</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/docteur-salah-gueddi" target="_blank"><span class="page-title">Docteur Salah Gueddi</span><span class="page-slug">/de/corporate/aerzte/2/docteur-salah-gueddi</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/1/docteur-stephane-bosquet" target="_blank"><span class="page-title">Docteur Stéphane Bosquet</span><span class="page-slug">/de/corporate/aerzte/1/docteur-stephane-bosquet</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/docteur-thai-nguyen-tang" target="_blank"><span class="page-title">Docteur Thai Nguyen-Tang</span><span class="page-slug">/de/corporate/aerzte/2/docteur-thai-nguyen-tang</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/docteur-thierry-d-pache" target="_blank"><span class="page-title">Docteur Thierry D. Pache</span><span class="page-slug">/de/corporate/aerzte/3/docteur-thierry-d-pache</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/docteur-tommaso-leidi" target="_blank"><span class="page-title">Docteur Tommaso Leidi</span><span class="page-slug">/de/corporate/aerzte/3/docteur-tommaso-leidi</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/docteur-veronika-vaclavik" target="_blank"><span class="page-title">Docteur Veronika Vaclavik</span><span class="page-slug">/de/corporate/aerzte/3/docteur-veronika-vaclavik</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/docteur-vincent-chollet" target="_blank"><span class="page-title">Docteur Vincent Chollet</span><span class="page-slug">/de/corporate/aerzte/2/docteur-vincent-chollet</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/docteur-vincent-liberek" target="_blank"><span class="page-title">Docteur Vincent Liberek</span><span class="page-slug">/de/corporate/aerzte/2/docteur-vincent-liberek</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/docteur-wassila-oulhaci-de-saussure" target="_blank"><span class="page-title">Docteur Wassila Oulhaci De Saussure</span><span class="page-slug">/de/corporate/aerzte/3/docteur-wassila-oulhaci-de-saussure</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/docteur-xavier-tenorio" target="_blank"><span class="page-title">Docteur Xavier Tenorio</span><span class="page-slug">/de/corporate/aerzte/2/docteur-xavier-tenorio</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/1/docteur-yves-chollet" target="_blank"><span class="page-title">Docteur Yves Chollet</span><span class="page-slug">/de/corporate/aerzte/1/docteur-yves-chollet</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-stefan-loretan" target="_blank"><span class="page-title">Dr med. Stefan Loretan</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-stefan-loretan</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/dr-med-agata-kufel" target="_blank"><span class="page-title">Dr. med. Agata Kufel</span><span class="page-slug">/de/corporate/aerzte/3/dr-med-agata-kufel</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/1/dr-med-alexander-ehrhardt" target="_blank"><span class="page-title">Dr. med. Alexander Ehrhardt</span><span class="page-slug">/de/corporate/aerzte/1/dr-med-alexander-ehrhardt</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/1/dr-med-alexander-herrmann" target="_blank"><span class="page-title">Dr. med. Alexander Herrmann</span><span class="page-slug">/de/corporate/aerzte/1/dr-med-alexander-herrmann</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/5/dr-med-alexander-odrowski" target="_blank"><span class="page-title">Dr. med. Alexander Odrowski</span><span class="page-slug">/de/corporate/aerzte/5/dr-med-alexander-odrowski</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-alexander-rosenov" target="_blank"><span class="page-title">Dr. med. Alexander Rosenov</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-alexander-rosenov</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-alexandra-patrizia-haefliger" target="_blank"><span class="page-title">Dr. med. Alexandra Patrizia Häfliger</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-alexandra-patrizia-haefliger</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/dr-med-andra-paul" target="_blank"><span class="page-title">Dr. med. André Paul</span><span class="page-slug">/de/corporate/aerzte/3/dr-med-andra-paul</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/dr-med-andrea-eva-polasek" target="_blank"><span class="page-title">Dr. med. Andrea Eva Polasek</span><span class="page-slug">/de/corporate/aerzte/2/dr-med-andrea-eva-polasek</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-andrei-khomenko" target="_blank"><span class="page-title">Dr. med. Andrei Khomenko</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-andrei-khomenko</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-anna-katharina-mitulla" target="_blank"><span class="page-title">Dr. med. Anna Katharina Mitulla</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-anna-katharina-mitulla</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/dr-med-annett-ramseier" target="_blank"><span class="page-title">Dr. med. Annett Ramseier</span><span class="page-slug">/de/corporate/aerzte/2/dr-med-annett-ramseier</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-annina-studer" target="_blank"><span class="page-title">Dr. med. Annina Studer</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-annina-studer</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/5/dr-med-antonie-pasch" target="_blank"><span class="page-title">Dr. med. Antonie Pasch</span><span class="page-slug">/de/corporate/aerzte/5/dr-med-antonie-pasch</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/dr-med-ariane-baumann" target="_blank"><span class="page-title">Dr. med. Ariane Baumann</span><span class="page-slug">/de/corporate/aerzte/2/dr-med-ariane-baumann</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/dr-med-ayse-doguoglu-diener" target="_blank"><span class="page-title">Dr. med. Ayse Doguoglu Diener</span><span class="page-slug">/de/corporate/aerzte/2/dr-med-ayse-doguoglu-diener</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/dr-med-barbara-kernen-baselice" target="_blank"><span class="page-title">Dr. med. Barbara Kernen Baselice</span><span class="page-slug">/de/corporate/aerzte/2/dr-med-barbara-kernen-baselice</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-bernd-olaf-vollnberg" target="_blank"><span class="page-title">Dr. med. Bernd Olaf Vollnberg</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-bernd-olaf-vollnberg</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-carlo-theus-steinmann" target="_blank"><span class="page-title">Dr. med. Carlo Theus-Steinmann</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-carlo-theus-steinmann</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/dr-med-carmen-sjulammiet-rosendal" target="_blank"><span class="page-title">Dr. med. Carmen Sjulammiet Rosendal</span><span class="page-slug">/de/corporate/aerzte/3/dr-med-carmen-sjulammiet-rosendal</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-cathleen-fischer" target="_blank"><span class="page-title">Dr. med. Cathleen Fischer</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-cathleen-fischer</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/1/dr-med-christian-jost" target="_blank"><span class="page-title">Dr. med. Christian Jost</span><span class="page-slug">/de/corporate/aerzte/1/dr-med-christian-jost</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/1/dr-med-christian-rueedi" target="_blank"><span class="page-title">Dr. med. Christian Rüedi</span><span class="page-slug">/de/corporate/aerzte/1/dr-med-christian-rueedi</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/1/dr-med-christian-zettler" target="_blank"><span class="page-title">Dr. med. Christian Zettler</span><span class="page-slug">/de/corporate/aerzte/1/dr-med-christian-zettler</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/dr-med-christof-abaecherli" target="_blank"><span class="page-title">Dr. med. Christof Abächerli</span><span class="page-slug">/de/corporate/aerzte/3/dr-med-christof-abaecherli</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/dr-med-christof-za-llner" target="_blank"><span class="page-title">Dr. med. Christof Zöllner</span><span class="page-slug">/de/corporate/aerzte/3/dr-med-christof-za-llner</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-christopher-kelly" target="_blank"><span class="page-title">Dr. med. Christopher Kelly</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-christopher-kelly</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-claudio-bruker" target="_blank"><span class="page-title">Dr. med. Claudio Bruker</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-claudio-bruker</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/dr-med-cornelia-de-torrenta-bayard" target="_blank"><span class="page-title">Dr. med. Cornelia de Torrenté-Bayard</span><span class="page-slug">/de/corporate/aerzte/3/dr-med-cornelia-de-torrenta-bayard</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-dagmar-schreiber-dietrich" target="_blank"><span class="page-title">Dr. med. Dagmar Schreiber-Dietrich</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-dagmar-schreiber-dietrich</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/dr-med-daniel-marfurt" target="_blank"><span class="page-title">Dr. med. Daniel Marfurt</span><span class="page-slug">/de/corporate/aerzte/2/dr-med-daniel-marfurt</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/dr-med-daniel-staeuble" target="_blank"><span class="page-title">Dr. med. Daniel Stäuble</span><span class="page-slug">/de/corporate/aerzte/2/dr-med-daniel-staeuble</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/dr-med-diego-san-millan" target="_blank"><span class="page-title">Dr. med. Diego San Millán</span><span class="page-slug">/de/corporate/aerzte/2/dr-med-diego-san-millan</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/1/dr-med-dr-med-dent-frank-stefan-fischer" target="_blank"><span class="page-title">Dr. med. Dr. med. dent. Frank-Stefan Fischer</span><span class="page-slug">/de/corporate/aerzte/1/dr-med-dr-med-dent-frank-stefan-fischer</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/5/dr-med-elias-ammann" target="_blank"><span class="page-title">Dr. med. Elias Ammann</span><span class="page-slug">/de/corporate/aerzte/5/dr-med-elias-ammann</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/dr-med-et-scient-med-johannes-jehle" target="_blank"><span class="page-title">Dr. med. et scient. med. Johannes Jehle</span><span class="page-slug">/de/corporate/aerzte/3/dr-med-et-scient-med-johannes-jehle</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/dr-med-felix-kyrill-zeller" target="_blank"><span class="page-title">Dr. med. Felix Kyrill Zeller</span><span class="page-slug">/de/corporate/aerzte/3/dr-med-felix-kyrill-zeller</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-frank-brenn" target="_blank"><span class="page-title">Dr. med. Frank Brenn</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-frank-brenn</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-gian-luzi-looser" target="_blank"><span class="page-title">Dr. med. Gian-Luzi Looser</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-gian-luzi-looser</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/dr-med-glenn-fuechsel" target="_blank"><span class="page-title">Dr. med. Glenn Füchsel</span><span class="page-slug">/de/corporate/aerzte/3/dr-med-glenn-fuechsel</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/dr-med-hans-peter-jung-bonardi" target="_blank"><span class="page-title">Dr. med. Hans Peter Jung-Bonardi</span><span class="page-slug">/de/corporate/aerzte/2/dr-med-hans-peter-jung-bonardi</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/dr-med-helen-fontana-klaiber" target="_blank"><span class="page-title">Dr. med. Helen Fontana-Klaiber</span><span class="page-slug">/de/corporate/aerzte/2/dr-med-helen-fontana-klaiber</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/1/dr-med-helge-koehler" target="_blank"><span class="page-title">Dr. med. Helge Köhler</span><span class="page-slug">/de/corporate/aerzte/1/dr-med-helge-koehler</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-hyunju-kim-haemmig" target="_blank"><span class="page-title">Dr. med. Hyunju Kim Haemmig</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-hyunju-kim-haemmig</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/dr-med-ingo-fengels" target="_blank"><span class="page-title">Dr. med. Ingo Fengels</span><span class="page-slug">/de/corporate/aerzte/2/dr-med-ingo-fengels</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-irma-fellmann" target="_blank"><span class="page-title">Dr. med. Irma Fellmann</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-irma-fellmann</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/dr-med-ivan-krastev" target="_blank"><span class="page-title">Dr. med. Ivan Krastev</span><span class="page-slug">/de/corporate/aerzte/3/dr-med-ivan-krastev</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/1/dr-med-jiri-skarvan" target="_blank"><span class="page-title">Dr. med. Jiri Skarvan</span><span class="page-slug">/de/corporate/aerzte/1/dr-med-jiri-skarvan</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-joerg-hainich" target="_blank"><span class="page-title">Dr. med. Jörg Hainich</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-joerg-hainich</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/5/dr-med-judit-gili-kovacs" target="_blank"><span class="page-title">Dr. med. Judit Gili-Kovács</span><span class="page-slug">/de/corporate/aerzte/5/dr-med-judit-gili-kovacs</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/dr-med-julia-dahm" target="_blank"><span class="page-title">Dr. med. Julia Dahm</span><span class="page-slug">/de/corporate/aerzte/3/dr-med-julia-dahm</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/dr-med-katharina-zybulski" target="_blank"><span class="page-title">Dr. med. Katharina Zybulski</span><span class="page-slug">/de/corporate/aerzte/3/dr-med-katharina-zybulski</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-katrin-tomic" target="_blank"><span class="page-title">Dr. med. Katrin Tomic</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-katrin-tomic</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/1/dr-med-kerstin-walter" target="_blank"><span class="page-title">Dr. med. Kerstin Walter</span><span class="page-slug">/de/corporate/aerzte/1/dr-med-kerstin-walter</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/dr-med-konstantinos-gardanis" target="_blank"><span class="page-title">Dr. med. Konstantinos Gardanis</span><span class="page-slug">/de/corporate/aerzte/2/dr-med-konstantinos-gardanis</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-marc-maurer" target="_blank"><span class="page-title">Dr. med. Marc Maurer</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-marc-maurer</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-mario-rancan" target="_blank"><span class="page-title">Dr. med. Mario Rancan</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-mario-rancan</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/dr-med-markus-wagner" target="_blank"><span class="page-title">Dr. med. Markus Max Wagner</span><span class="page-slug">/de/corporate/aerzte/2/dr-med-markus-wagner</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/1/dr-med-martin-christian-schumacher" target="_blank"><span class="page-title">Dr. med. Martin Christian Schumacher</span><span class="page-slug">/de/corporate/aerzte/1/dr-med-martin-christian-schumacher</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-martin-schober" target="_blank"><span class="page-title">Dr. med. Martin Schober</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-martin-schober</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/dr-med-matthias-zimmermann" target="_blank"><span class="page-title">Dr. med. Matthias Zimmermann</span><span class="page-slug">/de/corporate/aerzte/3/dr-med-matthias-zimmermann</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/dr-med-michaela-sauter" target="_blank"><span class="page-title">Dr. med. Michaela Sauter</span><span class="page-slug">/de/corporate/aerzte/2/dr-med-michaela-sauter</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/5/dr-med-monika-ruoss" target="_blank"><span class="page-title">Dr. med. Monika Ruoss</span><span class="page-slug">/de/corporate/aerzte/5/dr-med-monika-ruoss</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/dr-med-nicolas-schmutz" target="_blank"><span class="page-title">Dr. med. Nicolas Schmutz</span><span class="page-slug">/de/corporate/aerzte/3/dr-med-nicolas-schmutz</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-nicole-krenn" target="_blank"><span class="page-title">Dr. med. Nicole Krenn</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-nicole-krenn</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-nicole-mutter" target="_blank"><span class="page-title">Dr. med. Nicole Mutter</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-nicole-mutter</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/5/dr-med-niklas-heinimann" target="_blank"><span class="page-title">Dr. med. Niklas Heinimann</span><span class="page-slug">/de/corporate/aerzte/5/dr-med-niklas-heinimann</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/dr-med-niklas-renner" target="_blank"><span class="page-title">Dr. med. Niklas Renner</span><span class="page-slug">/de/corporate/aerzte/3/dr-med-niklas-renner</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-oliver-schmidt" target="_blank"><span class="page-title">Dr. med. Oliver Schmidt</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-oliver-schmidt</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/dr-med-paolo-abitabile" target="_blank"><span class="page-title">Dr. med. Paolo Abitabile</span><span class="page-slug">/de/corporate/aerzte/2/dr-med-paolo-abitabile</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-philipp-boucke" target="_blank"><span class="page-title">Dr. med. Philipp Boucke</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-philipp-boucke</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/dr-med-ralph-kaestner" target="_blank"><span class="page-title">Dr. med. Ralph Kästner</span><span class="page-slug">/de/corporate/aerzte/3/dr-med-ralph-kaestner</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/1/dr-med-roger-gmuer" target="_blank"><span class="page-title">Dr. med. Roger Gmür</span><span class="page-slug">/de/corporate/aerzte/1/dr-med-roger-gmuer</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/dr-med-saskia-schmuck" target="_blank"><span class="page-title">Dr. med. Saskia Schmuck</span><span class="page-slug">/de/corporate/aerzte/3/dr-med-saskia-schmuck</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/dr-med-silvia-rauch-wicki" target="_blank"><span class="page-title">Dr. med. Silvia Rauch-Wicki</span><span class="page-slug">/de/corporate/aerzte/3/dr-med-silvia-rauch-wicki</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/1/dr-med-silviana-spring" target="_blank"><span class="page-title">Dr. med. Silviana Spring</span><span class="page-slug">/de/corporate/aerzte/1/dr-med-silviana-spring</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/dr-med-stephan-werle" target="_blank"><span class="page-title">Dr. med. Stephan Werle</span><span class="page-slug">/de/corporate/aerzte/3/dr-med-stephan-werle</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/5/dr-med-stephanie-verta" target="_blank"><span class="page-title">Dr. med. Stephanie Verta</span><span class="page-slug">/de/corporate/aerzte/5/dr-med-stephanie-verta</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-tabea-schmocker" target="_blank"><span class="page-title">Dr. med. Tabea Schmocker</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-tabea-schmocker</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/1/dr-med-thomas-baumann" target="_blank"><span class="page-title">Dr. med. Thomas Baumann</span><span class="page-slug">/de/corporate/aerzte/1/dr-med-thomas-baumann</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-thuan-ly" target="_blank"><span class="page-title">Dr. med. Thuan Ly</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-thuan-ly</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-tobias-gross" target="_blank"><span class="page-title">Dr. med. Tobias Gross</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-tobias-gross</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/5/dr-med-tom-voeller" target="_blank"><span class="page-title">Dr. med. Tom Völler</span><span class="page-slug">/de/corporate/aerzte/5/dr-med-tom-voeller</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/1/dr-med-tomislav-gaspert" target="_blank"><span class="page-title">Dr. med. Tomislav Gaspert</span><span class="page-slug">/de/corporate/aerzte/1/dr-med-tomislav-gaspert</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/dr-med-ulrich-kallenbach" target="_blank"><span class="page-title">Dr. med. Ulrich Kallenbach</span><span class="page-slug">/de/corporate/aerzte/2/dr-med-ulrich-kallenbach</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-univ-jeremias-schmid" target="_blank"><span class="page-title">Dr. med. univ. Jeremias Schmid</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-univ-jeremias-schmid</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/5/dr-med-univ-zsuzsanna-szankai" target="_blank"><span class="page-title">Dr. med. univ. Zsuzsanna Szankai</span><span class="page-slug">/de/corporate/aerzte/5/dr-med-univ-zsuzsanna-szankai</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/dr-med-urania-kolyvanos-naumann" target="_blank"><span class="page-title">Dr. med. Urania Kolyvanos Naumann</span><span class="page-slug">/de/corporate/aerzte/4/dr-med-urania-kolyvanos-naumann</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/dr-med-urs-studer" target="_blank"><span class="page-title">Dr. med. Urs Studer</span><span class="page-slug">/de/corporate/aerzte/2/dr-med-urs-studer</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/5/dr-med-vincenzo-girardi" target="_blank"><span class="page-title">Dr. med. Vincenzo Girardi</span><span class="page-slug">/de/corporate/aerzte/5/dr-med-vincenzo-girardi</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/dr-med-werner-stadlmayr" target="_blank"><span class="page-title">Dr. med. Werner Stadlmayr</span><span class="page-slug">/de/corporate/aerzte/3/dr-med-werner-stadlmayr</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/5/dr-med-univ-dr-phil-vera-graup" target="_blank"><span class="page-title">Dr. med.univ. Dr. phil. Vera Graup</span><span class="page-slug">/de/corporate/aerzte/5/dr-med-univ-dr-phil-vera-graup</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/pd-dr-med-ali-reza-fathi" target="_blank"><span class="page-title">PD Dr. med. Ali Reza Fathi</span><span class="page-slug">/de/corporate/aerzte/2/pd-dr-med-ali-reza-fathi</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/pd-dr-med-frederic-baumann" target="_blank"><span class="page-title">PD Dr. med. Frédéric Baumann</span><span class="page-slug">/de/corporate/aerzte/4/pd-dr-med-frederic-baumann</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/pd-dr-med-guenter-eisele" target="_blank"><span class="page-title">PD Dr. med. Günter Eisele</span><span class="page-slug">/de/corporate/aerzte/3/pd-dr-med-guenter-eisele</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/5/pd-dr-med-thomas-rauer" target="_blank"><span class="page-title">PD Dr. med. Thomas Rauer</span><span class="page-slug">/de/corporate/aerzte/5/pd-dr-med-thomas-rauer</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/pd-dr-med-yulia-valko" target="_blank"><span class="page-title">PD Dr. med. Yulia Valko</span><span class="page-slug">/de/corporate/aerzte/4/pd-dr-med-yulia-valko</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/prof-dr-med-daniel-hausmann" target="_blank"><span class="page-title">Prof. Dr. med. Daniel Hausmann</span><span class="page-slug">/de/corporate/aerzte/4/prof-dr-med-daniel-hausmann</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/1/prof-dr-med-dominique-erni" target="_blank"><span class="page-title">Prof. Dr. med. Dominique Erni</span><span class="page-slug">/de/corporate/aerzte/1/prof-dr-med-dominique-erni</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/1/prof-dr-med-georg-noll" target="_blank"><span class="page-title">Prof. Dr. med. Georg Noll</span><span class="page-slug">/de/corporate/aerzte/1/prof-dr-med-georg-noll</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/1/prof-dr-med-kaspar-z-graggen" target="_blank"><span class="page-title">Prof. Dr. med. Kaspar Z'graggen</span><span class="page-slug">/de/corporate/aerzte/1/prof-dr-med-kaspar-z-graggen</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/prof-dr-med-marcel-kraft" target="_blank"><span class="page-title">Prof. Dr. med. Marcel Kraft</span><span class="page-slug">/de/corporate/aerzte/2/prof-dr-med-marcel-kraft</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/3/prof-dr-med-nicolas-diehm" target="_blank"><span class="page-title">Prof. Dr. med. Nicolas Diehm</span><span class="page-slug">/de/corporate/aerzte/3/prof-dr-med-nicolas-diehm</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/2/prof-dr-med-sascha-a-mueller" target="_blank"><span class="page-title">Prof. Dr. med. Sascha A. Müller</span><span class="page-slug">/de/corporate/aerzte/2/prof-dr-med-sascha-a-mueller</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/1/prof-dr-med-sebastian-kos" target="_blank"><span class="page-title">Prof. Dr. med. Sebastian Kos</span><span class="page-slug">/de/corporate/aerzte/1/prof-dr-med-sebastian-kos</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/aerzte/4/prof-dr-med-stefan-seewald" target="_blank"><span class="page-title">Prof. Dr. med. Stefan Seewald</span><span class="page-slug">/de/corporate/aerzte/4/prof-dr-med-stefan-seewald</span></a></li>
+    </ul>
+  </section>
+
+  <section class="group" data-template="fachgebiet">
+    <div class="group-head">
+      <span class="group-icon">⌬</span>
+      <div>
+        <p class="group-eyebrow">Fachgebiete · 50 specialty pages</p>
+        <h2 class="group-h">Specialties <span class="group-count">50</span></h2>
+      </div>
+    </div>
+    <ul class="page-list">
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/akupunktur-traditionelle-chinesische-medizin" target="_blank"><span class="page-title">Akupunktur - Traditionelle Chinesische Medizin (ASA)</span><span class="page-slug">/de/corporate/fachgebiete/akupunktur-traditionelle-chinesische-medizin</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/innere-medizin" target="_blank"><span class="page-title">Allgemeine Innere Medizin</span><span class="page-slug">/de/corporate/fachgebiete/innere-medizin</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/alterspsychiatrie-und-alterspsychotherapie" target="_blank"><span class="page-title">Alterspsychiatrie und Alterspsychotherapie</span><span class="page-slug">/de/corporate/fachgebiete/alterspsychiatrie-und-alterspsychotherapie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/checkup" target="_blank"><span class="page-title">Check-up: Gesundheitsvorsorge im Zentrum</span><span class="page-slug">/de/corporate/fachgebiete/checkup</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/chirurgie" target="_blank"><span class="page-title">Chirurgie</span><span class="page-slug">/de/corporate/fachgebiete/chirurgie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/delegierte-psychotherapie" target="_blank"><span class="page-title">Delegierte Psychotherapie (FMPP)</span><span class="page-slug">/de/corporate/fachgebiete/delegierte-psychotherapie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/endokrinologie-unddiabetologie" target="_blank"><span class="page-title">Endokrinologie / Diabetologie</span><span class="page-slug">/de/corporate/fachgebiete/endokrinologie-unddiabetologie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/fetomaternale-medizin" target="_blank"><span class="page-title">Fetomaternale Medizin</span><span class="page-slug">/de/corporate/fachgebiete/fetomaternale-medizin</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/gastroenterologie" target="_blank"><span class="page-title">Gastroenterologie</span><span class="page-slug">/de/corporate/fachgebiete/gastroenterologie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/gastroskopie" target="_blank"><span class="page-title">Gastroskopie (Magenspiegelung)</span><span class="page-slug">/de/corporate/fachgebiete/gastroskopie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/gynaekologische-onkologie" target="_blank"><span class="page-title">Gynäkologische Onkologie</span><span class="page-slug">/de/corporate/fachgebiete/gynaekologische-onkologie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/gynaekologiesche-zytologie" target="_blank"><span class="page-title">Gynäkologische Zytologie</span><span class="page-slug">/de/corporate/fachgebiete/gynaekologiesche-zytologie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/hepatologie" target="_blank"><span class="page-title">Hepatologie (Lebererkrankungen)</span><span class="page-slug">/de/corporate/fachgebiete/hepatologie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/herz-und-thorakalegefaesschirurgie" target="_blank"><span class="page-title">Herz- und thorakale Gefässchirurgie</span><span class="page-slug">/de/corporate/fachgebiete/herz-und-thorakalegefaesschirurgie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/hueftsonografie" target="_blank"><span class="page-title">Hüftsonographie nach Graf beim Neugeborenen und Säugling (SGUM)</span><span class="page-slug">/de/corporate/fachgebiete/hueftsonografie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/intensivmedizin" target="_blank"><span class="page-title">Intensivmedizin</span><span class="page-slug">/de/corporate/fachgebiete/intensivmedizin</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/invasive-neuroradiologie" target="_blank"><span class="page-title">Invasive Neuroradiologie</span><span class="page-slug">/de/corporate/fachgebiete/invasive-neuroradiologie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/kardiologie" target="_blank"><span class="page-title">Kardiologie (Herz & Gefässe)</span><span class="page-slug">/de/corporate/fachgebiete/kardiologie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/kinderchirurgie" target="_blank"><span class="page-title">Kinderchirurgie</span><span class="page-slug">/de/corporate/fachgebiete/kinderchirurgie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/klinische-ernaehrung" target="_blank"><span class="page-title">Klinische Ernährung</span><span class="page-slug">/de/corporate/fachgebiete/klinische-ernaehrung</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/klinische-notfallmedizinsgnor" target="_blank"><span class="page-title">Klinische Notfallmedizin (SGNOR)</span><span class="page-slug">/de/corporate/fachgebiete/klinische-notfallmedizinsgnor</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/klinische-pharmakologie-und-toxikologie" target="_blank"><span class="page-title">Klinische Pharmakologie und Toxikologie</span><span class="page-slug">/de/corporate/fachgebiete/klinische-pharmakologie-und-toxikologie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/konsiliar-und-liasonpsychiatrie" target="_blank"><span class="page-title">Konsiliar- und Liaisonpsychiatrie</span><span class="page-slug">/de/corporate/fachgebiete/konsiliar-und-liasonpsychiatrie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/laserbehandlungen-der-haut-und-hautnahen-schleimhaeuten" target="_blank"><span class="page-title">Laserbehandlungen der Haut und hautnahen Schleimhäute (FMCH)</span><span class="page-slug">/de/corporate/fachgebiete/laserbehandlungen-der-haut-und-hautnahen-schleimhaeuten</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/neonatologie" target="_blank"><span class="page-title">Neonatologie</span><span class="page-slug">/de/corporate/fachgebiete/neonatologie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/notarzt" target="_blank"><span class="page-title">Notarzt (SGNOR)</span><span class="page-slug">/de/corporate/fachgebiete/notarzt</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/nuklearmedizin" target="_blank"><span class="page-title">Nuklearmedizin</span><span class="page-slug">/de/corporate/fachgebiete/nuklearmedizin</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/operative-gynaekologie-und-geburtshilfe" target="_blank"><span class="page-title">Operative Gynäkologie und Geburtshilfe</span><span class="page-slug">/de/corporate/fachgebiete/operative-gynaekologie-und-geburtshilfe</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/ophthalmochirurgie" target="_blank"><span class="page-title">Ophthalmochirurgie (Augenchirurgie)</span><span class="page-slug">/de/corporate/fachgebiete/ophthalmochirurgie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/ophthalmologie" target="_blank"><span class="page-title">Ophthalmologie (Augenheilkunde)</span><span class="page-slug">/de/corporate/fachgebiete/ophthalmologie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/orale-implantologie" target="_blank"><span class="page-title">Orale Implantologie (SSO)</span><span class="page-slug">/de/corporate/fachgebiete/orale-implantologie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/pharmazeutische-medizin" target="_blank"><span class="page-title">Pharmazeutische Medizin</span><span class="page-slug">/de/corporate/fachgebiete/pharmazeutische-medizin</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/phoniatrie" target="_blank"><span class="page-title">Phoniatrie</span><span class="page-slug">/de/corporate/fachgebiete/phoniatrie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/plastische-rekonstruktiveundaesthetischechirurgie" target="_blank"><span class="page-title">Plastische, Rekonstruktive und Ästhetische Chirurgie</span><span class="page-slug">/de/corporate/fachgebiete/plastische-rekonstruktiveundaesthetischechirurgie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/praevention-und-gesundheitswesen" target="_blank"><span class="page-title">Prävention und Gesundheitswesen</span><span class="page-slug">/de/corporate/fachgebiete/praevention-und-gesundheitswesen</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/praxislabor" target="_blank"><span class="page-title">Praxislabor (KHM)</span><span class="page-slug">/de/corporate/fachgebiete/praxislabor</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/psychiatrie-und-psychotherapie" target="_blank"><span class="page-title">Psychiatrie und Psychotherapie</span><span class="page-slug">/de/corporate/fachgebiete/psychiatrie-und-psychotherapie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/radiologie" target="_blank"><span class="page-title">Radiologie</span><span class="page-slug">/de/corporate/fachgebiete/radiologie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/revisionschirurgie" target="_blank"><span class="page-title">Revisionschirurgie</span><span class="page-slug">/de/corporate/fachgebiete/revisionschirurgie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/sachkunde-fuer-dosisintensive-untersuchungen-und-therapeutische" target="_blank"><span class="page-title">Sachkunde für dosisintensive Untersuchungen und therapeutische Eingriffe in der Gastroenterologie (SGG)</span><span class="page-slug">/de/corporate/fachgebiete/sachkunde-fuer-dosisintensive-untersuchungen-und-therapeutische</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/sachkunde-fuer-dosisintensives-roentgen" target="_blank"><span class="page-title">Sachkunde für dosisintensives Röntgen (KHM)</span><span class="page-slug">/de/corporate/fachgebiete/sachkunde-fuer-dosisintensives-roentgen</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/schaedelbasischirurgie" target="_blank"><span class="page-title">Schädelbasischirurgie</span><span class="page-slug">/de/corporate/fachgebiete/schaedelbasischirurgie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/schlafmedizin" target="_blank"><span class="page-title">Schlafmedizin</span><span class="page-slug">/de/corporate/fachgebiete/schlafmedizin</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/schwangerschaftsultraschall" target="_blank"><span class="page-title">Schwangerschaftsultraschall (SGUM)</span><span class="page-slug">/de/corporate/fachgebiete/schwangerschaftsultraschall</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/sonographie" target="_blank"><span class="page-title">Sonographie (SGUM)</span><span class="page-slug">/de/corporate/fachgebiete/sonographie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/tauch-und-hyperbarmedizin" target="_blank"><span class="page-title">Tauch- und Hyperbarmedizin (SUHMS)</span><span class="page-slug">/de/corporate/fachgebiete/tauch-und-hyperbarmedizin</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/tropen-und-reisemedizin" target="_blank"><span class="page-title">Tropen- und Reisemedizin</span><span class="page-slug">/de/corporate/fachgebiete/tropen-und-reisemedizin</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/vertrauensarzt" target="_blank"><span class="page-title">Vertrauensarzt (SGV)</span><span class="page-slug">/de/corporate/fachgebiete/vertrauensarzt</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/wirbelsaeulenchirurgie" target="_blank"><span class="page-title">Wirbelsäulenchirurgie</span><span class="page-slug">/de/corporate/fachgebiete/wirbelsaeulenchirurgie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/fachgebiete/zytopathologie" target="_blank"><span class="page-title">Zytopathologie</span><span class="page-slug">/de/corporate/fachgebiete/zytopathologie</span></a></li>
+    </ul>
+  </section>
+
+  <section class="group" data-template="krankheitsbild">
+    <div class="group-head">
+      <span class="group-icon">✚</span>
+      <div>
+        <p class="group-eyebrow">Krankheitsbilder · 50 long-form conditions</p>
+        <h2 class="group-h">Conditions <span class="group-count">50</span></h2>
+      </div>
+    </div>
+    <ul class="page-list">
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/angina-pectoris" target="_blank"><span class="page-title">Angina pectoris</span><span class="page-slug">/de/corporate/krankheitsbilder/angina-pectoris</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/aortenaneurysma" target="_blank"><span class="page-title">Aortenaneurysma</span><span class="page-slug">/de/corporate/krankheitsbilder/aortenaneurysma</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/arterienverkalkung" target="_blank"><span class="page-title">Arterienverkalkung</span><span class="page-slug">/de/corporate/krankheitsbilder/arterienverkalkung</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/baker-zyste" target="_blank"><span class="page-title">Bakerzyste (Poplitealzyste)</span><span class="page-slug">/de/corporate/krankheitsbilder/baker-zyste</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/bauchhoehlenschwangerschaft" target="_blank"><span class="page-title">Bauchhöhlenschwangerschaft</span><span class="page-slug">/de/corporate/krankheitsbilder/bauchhoehlenschwangerschaft</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/bauchspeicheldruesenkrebs" target="_blank"><span class="page-title">Bauchspeicheldrüsenkrebs</span><span class="page-slug">/de/corporate/krankheitsbilder/bauchspeicheldruesenkrebs</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/blasenentzuendung" target="_blank"><span class="page-title">Blasenentzündung (Zystitis)</span><span class="page-slug">/de/corporate/krankheitsbilder/blasenentzuendung</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/hoher-blutdruck" target="_blank"><span class="page-title">Bluthochdruck (Hypertonie)</span><span class="page-slug">/de/corporate/krankheitsbilder/hoher-blutdruck</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/brustentzuendung" target="_blank"><span class="page-title">Brustentzündung</span><span class="page-slug">/de/corporate/krankheitsbilder/brustentzuendung</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/brustkrebs" target="_blank"><span class="page-title">Brustkrebs</span><span class="page-slug">/de/corporate/krankheitsbilder/brustkrebs</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/brustzysten" target="_blank"><span class="page-title">Brustzysten</span><span class="page-slug">/de/corporate/krankheitsbilder/brustzysten</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/eierstockkrebs" target="_blank"><span class="page-title">Eierstockkrebs</span><span class="page-slug">/de/corporate/krankheitsbilder/eierstockkrebs</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/eierstockzysten" target="_blank"><span class="page-title">Eierstockzysten</span><span class="page-slug">/de/corporate/krankheitsbilder/eierstockzysten</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/eileiterentzuendung" target="_blank"><span class="page-title">Eileiterentzündung, Eierstockentzündung</span><span class="page-slug">/de/corporate/krankheitsbilder/eileiterentzuendung</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/eileiterschwangerschaft" target="_blank"><span class="page-title">Eileiterschwangerschaft</span><span class="page-slug">/de/corporate/krankheitsbilder/eileiterschwangerschaft</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/endokarditis" target="_blank"><span class="page-title">Endokarditis (Herzinnenhautentzündung)</span><span class="page-slug">/de/corporate/krankheitsbilder/endokarditis</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/endometriose" target="_blank"><span class="page-title">Endometriose</span><span class="page-slug">/de/corporate/krankheitsbilder/endometriose</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/fehlgeburt" target="_blank"><span class="page-title">Fehlgeburt</span><span class="page-slug">/de/corporate/krankheitsbilder/fehlgeburt</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/feigwarzen" target="_blank"><span class="page-title">Feigwarzen</span><span class="page-slug">/de/corporate/krankheitsbilder/feigwarzen</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/gebaermutterhalskrebs" target="_blank"><span class="page-title">Gebärmutterhalskrebs</span><span class="page-slug">/de/corporate/krankheitsbilder/gebaermutterhalskrebs</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/gebaermutterkrebs" target="_blank"><span class="page-title">Gebärmutterkrebs</span><span class="page-slug">/de/corporate/krankheitsbilder/gebaermutterkrebs</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/gebaermuttersenkung" target="_blank"><span class="page-title">Gebärmuttersenkung</span><span class="page-slug">/de/corporate/krankheitsbilder/gebaermuttersenkung</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/herzinfarkt" target="_blank"><span class="page-title">Herzinfarkt (Myokardinfarkt)</span><span class="page-slug">/de/corporate/krankheitsbilder/herzinfarkt</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/herzklappenfehler" target="_blank"><span class="page-title">Herzklappenfehler</span><span class="page-slug">/de/corporate/krankheitsbilder/herzklappenfehler</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/herzmuskelnentzuendung" target="_blank"><span class="page-title">Herzmuskelentzündung (Myokarditis)</span><span class="page-slug">/de/corporate/krankheitsbilder/herzmuskelnentzuendung</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/hirntumor" target="_blank"><span class="page-title">Hirntumor</span><span class="page-slug">/de/corporate/krankheitsbilder/hirntumor</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/hohes-cholesterin-hohe-blutfettwerte" target="_blank"><span class="page-title">Hohe Blutfettwerte (Hypercholesterinämie)</span><span class="page-slug">/de/corporate/krankheitsbilder/hohes-cholesterin-hohe-blutfettwerte</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/koronare-herzkrankheit" target="_blank"><span class="page-title">Koronare Herzkrankheit</span><span class="page-slug">/de/corporate/krankheitsbilder/koronare-herzkrankheit</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/krampfadern" target="_blank"><span class="page-title">Krampfadern</span><span class="page-slug">/de/corporate/krankheitsbilder/krampfadern</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/lungenoedem" target="_blank"><span class="page-title">Lungenödem</span><span class="page-slug">/de/corporate/krankheitsbilder/lungenoedem</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/mastopathie" target="_blank"><span class="page-title">Mastopathie</span><span class="page-slug">/de/corporate/krankheitsbilder/mastopathie</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/menstruationsstoerungen" target="_blank"><span class="page-title">Menstruationsstörungen</span><span class="page-slug">/de/corporate/krankheitsbilder/menstruationsstoerungen</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/metabolisches-syndrom" target="_blank"><span class="page-title">Metabolisches Syndrom</span><span class="page-slug">/de/corporate/krankheitsbilder/metabolisches-syndrom</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/myom" target="_blank"><span class="page-title">Myom</span><span class="page-slug">/de/corporate/krankheitsbilder/myom</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/perikarditis" target="_blank"><span class="page-title">Perikarditis</span><span class="page-slug">/de/corporate/krankheitsbilder/perikarditis</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/periphere-arterielle-verschlusskrankheit" target="_blank"><span class="page-title">Periphere arterielle Verschlusskrankheit (PAVK)</span><span class="page-slug">/de/corporate/krankheitsbilder/periphere-arterielle-verschlusskrankheit</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/praemenstruelles-syndrom" target="_blank"><span class="page-title">PMS (Prämenstruelles Syndrom)</span><span class="page-slug">/de/corporate/krankheitsbilder/praemenstruelles-syndrom</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/prostatakrebs" target="_blank"><span class="page-title">Prostatakrebs</span><span class="page-slug">/de/corporate/krankheitsbilder/prostatakrebs</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/scheidenausfluss" target="_blank"><span class="page-title">Scheidenausfluss</span><span class="page-slug">/de/corporate/krankheitsbilder/scheidenausfluss</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/scheidenentzuendung" target="_blank"><span class="page-title">Scheidenentzündung</span><span class="page-slug">/de/corporate/krankheitsbilder/scheidenentzuendung</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/scheidenkrebs" target="_blank"><span class="page-title">Scheidenkrebs</span><span class="page-slug">/de/corporate/krankheitsbilder/scheidenkrebs</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/scheidenpilz" target="_blank"><span class="page-title">Scheidenpilz</span><span class="page-slug">/de/corporate/krankheitsbilder/scheidenpilz</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/schlaganfall-hirnschlag" target="_blank"><span class="page-title">Schlaganfall</span><span class="page-slug">/de/corporate/krankheitsbilder/schlaganfall-hirnschlag</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/schwangerschaftsbluthochdruck" target="_blank"><span class="page-title">Schwangerschaftsbluthochdruck</span><span class="page-slug">/de/corporate/krankheitsbilder/schwangerschaftsbluthochdruck</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/schwangerschaftsdiabetes" target="_blank"><span class="page-title">Schwangerschaftsdiabetes</span><span class="page-slug">/de/corporate/krankheitsbilder/schwangerschaftsdiabetes</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/tiefer-blutdruck" target="_blank"><span class="page-title">Tiefer Blutdruck (Hypotonie)</span><span class="page-slug">/de/corporate/krankheitsbilder/tiefer-blutdruck</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/urininkontinenz" target="_blank"><span class="page-title">Urininkontinenz</span><span class="page-slug">/de/corporate/krankheitsbilder/urininkontinenz</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/venenentzuendung" target="_blank"><span class="page-title">Venenentzündung</span><span class="page-slug">/de/corporate/krankheitsbilder/venenentzuendung</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/vorhofflimmern" target="_blank"><span class="page-title">Vorhofflimmern (atrial fibrillation)</span><span class="page-slug">/de/corporate/krankheitsbilder/vorhofflimmern</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/krankheitsbilder/zuckerkrankheit-diabetes" target="_blank"><span class="page-title">Zuckerkrankheit, Diabetes</span><span class="page-slug">/de/corporate/krankheitsbilder/zuckerkrankheit-diabetes</span></a></li>
+    </ul>
+  </section>
+
+  <section class="group" data-template="news">
+    <div class="group-head">
+      <span class="group-icon">◧</span>
+      <div>
+        <p class="group-eyebrow">Medien & News · 25 press releases</p>
+        <h2 class="group-h">News articles <span class="group-count">25</span></h2>
+      </div>
+    </div>
+    <ul class="page-list">
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/medien-und-news/medienmitteilungen-und-news/lucerne-toolbox-3" target="_blank"><span class="page-title">«LUCERNE TOOLBOX 3»: Ein digitaler Kompass bei Brustkrebs</span><span class="page-slug">/de/corporate/medien-und-news/medienmitteilungen-und-news/lucerne-toolbox-3</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/medien-und-news/medienmitteilungen-und-news/daniel-liedtke" target="_blank"><span class="page-title">Daniel Liedtke als neuer Verwaltungsratspräsident von Helsana nominiert – Suche nach neuem CEO von Hirslanden eingeleitet</span><span class="page-slug">/de/corporate/medien-und-news/medienmitteilungen-und-news/daniel-liedtke</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/medien-und-news/medienmitteilungen-und-news/erfolgreicher-abschluss-der-studierenden-aus-nicosia" target="_blank"><span class="page-title">Erfolgreicher Abschluss der Studierenden aus Nicosia</span><span class="page-slug">/de/corporate/medien-und-news/medienmitteilungen-und-news/erfolgreicher-abschluss-der-studierenden-aus-nicosia</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/medien-und-news/medienmitteilungen-und-news/symposium-hirslanden-research-foundation" target="_blank"><span class="page-title">Erfolgreicher Auftakt: Erstes Symposium der Hirslanden Research Foundation</span><span class="page-slug">/de/corporate/medien-und-news/medienmitteilungen-und-news/symposium-hirslanden-research-foundation</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/medien-und-news/medienmitteilungen-und-news/pilotprojekt-patientenergebnisse" target="_blank"><span class="page-title">Gemeinsam für mehr Qualität im Gesundheitswesen: Neues Pilotprojekt zur Erhebung von Patientenergebnissen gestartet</span><span class="page-slug">/de/corporate/medien-und-news/medienmitteilungen-und-news/pilotprojekt-patientenergebnisse</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/medien-und-news/medienmitteilungen-und-news/geplanter-stellenabbau-administrative-funktionen" target="_blank"><span class="page-title">Geplanter Stellenabbau von administrativen Funktionen auf Gruppen-Ebene</span><span class="page-slug">/de/corporate/medien-und-news/medienmitteilungen-und-news/geplanter-stellenabbau-administrative-funktionen</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/medien-und-news/medienmitteilungen-und-news/gilles-rufenacht-zum-ceo-ernannt" target="_blank"><span class="page-title">Gilles Rufenacht zum neuen CEO der Hirslanden-Gruppe ernannt</span><span class="page-slug">/de/corporate/medien-und-news/medienmitteilungen-und-news/gilles-rufenacht-zum-ceo-ernannt</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/medien-und-news/medienmitteilungen-und-news/hirslanden-einigt-sich-mit-der-css" target="_blank"><span class="page-title">Hirslanden einigt sich mit der CSS – vertragsloser Zustand beendet</span><span class="page-slug">/de/corporate/medien-und-news/medienmitteilungen-und-news/hirslanden-einigt-sich-mit-der-css</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/medien-und-news/medienmitteilungen-und-news/swiss-lgbti-label" target="_blank"><span class="page-title">Hirslanden erhält das Swiss LGBTI-Label: Ein sichtbares Zeichen für gelebte Vielfalt</span><span class="page-slug">/de/corporate/medien-und-news/medienmitteilungen-und-news/swiss-lgbti-label</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/medien-und-news/medienmitteilungen-und-news/gesundheitscampus-st-gallen" target="_blank"><span class="page-title">Hirslanden konzentriert Versorgung an der Klinik Stephanshorn</span><span class="page-slug">/de/corporate/medien-und-news/medienmitteilungen-und-news/gesundheitscampus-st-gallen</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/medien-und-news/medienmitteilungen-und-news/corinne-suter-medical-partner" target="_blank"><span class="page-title">Hirslanden neu Official Medical Partner von Corinne Suter</span><span class="page-slug">/de/corporate/medien-und-news/medienmitteilungen-und-news/corinne-suter-medical-partner</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/medien-und-news/medienmitteilungen-und-news/hirslanden-setzt-regionalisierung-weiter-um" target="_blank"><span class="page-title">Hirslanden setzt Regionalisierung weiter um</span><span class="page-slug">/de/corporate/medien-und-news/medienmitteilungen-und-news/hirslanden-setzt-regionalisierung-weiter-um</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/medien-und-news/medienmitteilungen-und-news/hirslanden-weiterhin-official-medical-partner-von-swiss-ski" target="_blank"><span class="page-title">Hirslanden weiterhin Official Medical Partner von Swiss-Ski</span><span class="page-slug">/de/corporate/medien-und-news/medienmitteilungen-und-news/hirslanden-weiterhin-official-medical-partner-von-swiss-ski</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/medien-und-news/medienmitteilungen-und-news/identifikation-des-imageable-genome-eroeffnet-neue-Ansaetze-fuer-die-medizinische-bildgebende-diagnostik" target="_blank"><span class="page-title">Identifikation des «Imageable Genome» eröffnet neue Ansätze für die medizinische bildgebende Diagnostik</span><span class="page-slug">/de/corporate/medien-und-news/medienmitteilungen-und-news/identifikation-des-imageable-genome-eroeffnet-neue-Ansaetze-fuer-die-medizinische-bildgebende-diagnostik</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/medien-und-news/medienmitteilungen-und-news/konsultationsverfahren-abgeschlossen" target="_blank"><span class="page-title">Konsultationsverfahren abgeschlossen</span><span class="page-slug">/de/corporate/medien-und-news/medienmitteilungen-und-news/konsultationsverfahren-abgeschlossen</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/medien-und-news/medienmitteilungen-und-news/kl-rueckt-naeher-an-vsr" target="_blank"><span class="page-title">Konzernleitung rückt näher an die Versorgungsregionen</span><span class="page-slug">/de/corporate/medien-und-news/medienmitteilungen-und-news/kl-rueckt-naeher-an-vsr</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/medien-und-news/medienmitteilungen-und-news/mal-ehrlich-und-hirslanden-baby-entlasten-eltern" target="_blank"><span class="page-title">mal ehrlich und Hirslanden Baby entlasten Eltern</span><span class="page-slug">/de/corporate/medien-und-news/medienmitteilungen-und-news/mal-ehrlich-und-hirslanden-baby-entlasten-eltern</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/medien-und-news/medienmitteilungen-und-news/archiv" target="_blank"><span class="page-title">Medienmitteilungen Archiv</span><span class="page-slug">/de/corporate/medien-und-news/medienmitteilungen-und-news/archiv</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/medien-und-news/medienmitteilungen-und-news/direktion-lausanne-mehdi-bensouda" target="_blank"><span class="page-title">Mehdi Bensouda wird neuer Direktor der Hirslanden-Kliniken in Lausanne</span><span class="page-slug">/de/corporate/medien-und-news/medienmitteilungen-und-news/direktion-lausanne-mehdi-bensouda</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/medien-und-news/medienmitteilungen-und-news/neuausrichtung-andreasklinik" target="_blank"><span class="page-title">Neuausrichtung Hirslanden AndreasKlinik: Fokus auf Orthopädie, Neuro- und Wirbelsäulenchirurgie</span><span class="page-slug">/de/corporate/medien-und-news/medienmitteilungen-und-news/neuausrichtung-andreasklinik</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/medien-und-news/medienmitteilungen-und-news/neue-leitung-clinique-la-colline-und-clinique-des-grangettes" target="_blank"><span class="page-title">Neue Leitung für die Hirslanden Clinique La Colline und die Hirslanden Clinique des Grangettes</span><span class="page-slug">/de/corporate/medien-und-news/medienmitteilungen-und-news/neue-leitung-clinique-la-colline-und-clinique-des-grangettes</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/medien-und-news/medienmitteilungen-und-news/athlethissima-partnerschaft" target="_blank"><span class="page-title">Neue Partnerschaft zwischen Sport und Gesundheit: Athletissima und die Hirslanden-Kliniken Bois-Cerf und Cecil freuen sich, ihre Kooperation bekanntzugeben</span><span class="page-slug">/de/corporate/medien-und-news/medienmitteilungen-und-news/athlethissima-partnerschaft</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/medien-und-news/medienmitteilungen-und-news/neuer-cfo" target="_blank"><span class="page-title">Neuer Chief Financial Officer ernannt</span><span class="page-slug">/de/corporate/medien-und-news/medienmitteilungen-und-news/neuer-cfo</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/medien-und-news/medienmitteilungen-und-news/personelle-veraenderung-konzernleitung-stephan-studer" target="_blank"><span class="page-title">Personelle Veränderung in der Konzernleitung von Hirslanden</span><span class="page-slug">/de/corporate/medien-und-news/medienmitteilungen-und-news/personelle-veraenderung-konzernleitung-stephan-studer</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/medien-und-news/medienmitteilungen-und-news/personelle-veraenderung-konzernleitung" target="_blank"><span class="page-title">Personelle Veränderung in der Konzernleitung von Hirslanden</span><span class="page-slug">/de/corporate/medien-und-news/medienmitteilungen-und-news/personelle-veraenderung-konzernleitung</span></a></li>
+    </ul>
+  </section>
+
+  <section class="group" data-template="jobs">
+    <div class="group-head">
+      <span class="group-icon">⚒</span>
+      <div>
+        <p class="group-eyebrow">Jobs & Karriere · 4 pages</p>
+        <h2 class="group-h">Jobs & Career <span class="group-count">4</span></h2>
+      </div>
+    </div>
+    <ul class="page-list">
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/jobs-und-karriere/aus-und-weiterbildung" target="_blank"><span class="page-title">Aus- und Weiterbildung bei der Hirslanden-Gruppe</span><span class="page-slug">/de/corporate/jobs-und-karriere/aus-und-weiterbildung</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/jobs-und-karriere/karrierepfade" target="_blank"><span class="page-title">Dein Karriereweg führt über Hirslanden</span><span class="page-slug">/de/corporate/jobs-und-karriere/karrierepfade</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/jobs-und-karriere/arbeitgeberin" target="_blank"><span class="page-title">Hirslanden als Arbeitgeberin</span><span class="page-slug">/de/corporate/jobs-und-karriere/arbeitgeberin</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/jobs-und-karriere/pensionskasse" target="_blank"><span class="page-title">Pensionskasse</span><span class="page-slug">/de/corporate/jobs-und-karriere/pensionskasse</span></a></li>
+    </ul>
+  </section>
+
+  <section class="group" data-template="kliniken">
+    <div class="group-head">
+      <span class="group-icon">◆</span>
+      <div>
+        <p class="group-eyebrow">Kliniken & Zentren · 5 pages</p>
+        <h2 class="group-h">Clinics & Centers <span class="group-count">5</span></h2>
+      </div>
+    </div>
+    <ul class="page-list">
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/kliniken-und-zentren/hirslanden-in-ihrer-naehe" target="_blank"><span class="page-title">Hirslanden in Ihrer Nähe</span><span class="page-slug">/de/corporate/kliniken-und-zentren/hirslanden-in-ihrer-naehe</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/kliniken-und-zentren/medizinische-zentren" target="_blank"><span class="page-title">Medizinische Zentren</span><span class="page-slug">/de/corporate/kliniken-und-zentren/medizinische-zentren</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/kliniken-und-zentren/praxiszentren" target="_blank"><span class="page-title">Unsere ambulanten Operationszentren</span><span class="page-slug">/de/corporate/kliniken-und-zentren/praxiszentren</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/kliniken-und-zentren/geburtskliniken" target="_blank"><span class="page-title">Unsere Geburtskliniken auf einen Blick</span><span class="page-slug">/de/corporate/kliniken-und-zentren/geburtskliniken</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/kliniken-und-zentren/kliniken" target="_blank"><span class="page-title">Unsere Kliniken auf einen Blick</span><span class="page-slug">/de/corporate/kliniken-und-zentren/kliniken</span></a></li>
+    </ul>
+  </section>
+
+  <section class="group" data-template="ueber-uns">
+    <div class="group-head">
+      <span class="group-icon">◌</span>
+      <div>
+        <p class="group-eyebrow">Über uns · 5 pages</p>
+        <h2 class="group-h">About us <span class="group-count">5</span></h2>
+      </div>
+    </div>
+    <ul class="page-list">
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/ueber-uns/forschung-lehre" target="_blank"><span class="page-title">Hirslanden steht für Forschung & Lehre</span><span class="page-slug">/de/corporate/ueber-uns/forschung-lehre</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/ueber-uns/nachhaltigkeit" target="_blank"><span class="page-title">Nachhaltigkeit bei der Hirslanden-Gruppe</span><span class="page-slug">/de/corporate/ueber-uns/nachhaltigkeit</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/ueber-uns/qualitaet" target="_blank"><span class="page-title">Qualität</span><span class="page-slug">/de/corporate/ueber-uns/qualitaet</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/ueber-uns/together-we-care" target="_blank"><span class="page-title">Together We Care: Unsere Strategie</span><span class="page-slug">/de/corporate/ueber-uns/together-we-care</span></a></li>
+      <li><a href="https://eds-migration--hirslanden-eds-prototype--catalan-adobe.aem.page/de/corporate/ueber-uns/unternehmensportrait" target="_blank"><span class="page-title">Unternehmensporträt</span><span class="page-slug">/de/corporate/ueber-uns/unternehmensportrait</span></a></li>
+    </ul>
+  </section>
+
+  <div class="note">
+    <strong>Heads up:</strong> Links point at the <code>eds-migration</code> branch preview.
+    A handful of cross-page links inside these pages (parent listings, language switcher to
+    FR/EN) <strong>will 404</strong> — we only migrated the 290 content pages, not the parent
+    indexes or other languages. Documented in
+    <a href="https://github.com/catalan-adobe/hirslanden-eds-prototype/blob/eds-migration/docs/SHOWCASE.md" target="_blank">SHOWCASE.md</a>'s
+    "Things we deliberately didn't do" section.
+  </div>
+</main>
+
+<script>
+  const q = document.getElementById('q');
+  const count = document.getElementById('count');
+  const tags = document.querySelectorAll('.filter-tag');
+  let activeTpl = 'all';
+
+  function apply() {
+    const term = q.value.trim().toLowerCase();
+    let visible = 0;
+    const groups = document.querySelectorAll('.group');
+    let total = 0;
+    groups.forEach((g) => {
+      const tpl = g.dataset.template;
+      const items = g.querySelectorAll('.page-list li');
+      let groupVisible = 0;
+      items.forEach((li) => {
+        const text = li.textContent.toLowerCase();
+        const tplMatch = activeTpl === 'all' || activeTpl === tpl;
+        const termMatch = !term || text.includes(term);
+        const show = tplMatch && termMatch;
+        li.classList.toggle('is-hidden', !show);
+        if (show) groupVisible += 1;
+        total += 1;
+      });
+      g.classList.toggle('is-hidden', groupVisible === 0);
+      visible += groupVisible;
+    });
+    count.textContent = visible === total ? `${total} of ${total}` : `${visible} of ${total} matching`;
+  }
+
+  q.addEventListener('input', apply);
+  tags.forEach((t) => t.addEventListener('click', () => {
+    tags.forEach((x) => x.classList.remove('is-active'));
+    t.classList.add('is-active');
+    activeTpl = t.dataset.tpl;
+    apply();
+  }));
+</script>
+
+</body>
+</html>

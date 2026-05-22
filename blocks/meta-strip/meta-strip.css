@@ -1,0 +1,63 @@
+/*
+ * Hirslanden Variant C — meta-strip block
+ * Thin band with icon-prefixed key/value items; last item right-aligned.
+ */
+
+/* Block container is passthrough — all visual styles live on the row.
+   Earlier had its own padding 14px 0 that doubled up with the row,
+   pushing total vertical space to 28px instead of source 14px. */
+.meta-strip {
+  margin: 0;
+}
+
+.meta-strip-row {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--color-muted);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  padding: 14px 0;
+}
+
+.meta-strip-item {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* EDS auto-wraps cell text in <p>; default p margins make each item
+   ~14px taller. Same root cause as audience-tabs/tabs. */
+.meta-strip-item p {
+  margin: 0;
+}
+
+.meta-strip-item strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.meta-strip-cta {
+  margin-left: auto;
+}
+
+.meta-strip-cta a:any-link {
+  color: var(--color-primary-deep);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.meta-strip-cta a:any-link::after {
+  content: " →";
+}
+
+@media (width <= 720px) {
+  .meta-strip-cta {
+    margin-left: 0;
+    width: 100%;
+  }
+}
