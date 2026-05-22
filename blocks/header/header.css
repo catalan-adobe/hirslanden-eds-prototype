@@ -144,6 +144,9 @@ header > nav.crumb {
   color: var(--color-muted);
 }
 
+/* stylelint-disable-next-line no-descending-specificity --
+   .wrap inside the crumb is a different element from .wrap inside
+   .header.block (utility-strip and nav). No actual cascade conflict. */
 header > nav.crumb .wrap {
   max-width: 1280px;
   margin: 0 auto;
