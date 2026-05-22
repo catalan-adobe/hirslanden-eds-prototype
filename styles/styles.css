@@ -365,9 +365,13 @@ main img {
   width: 100%;
 }
 
-/* sections */
+/* sections — source uses `.section { padding: 48px 0 }` so backgrounds
+   fill the full vertical band; the boilerplate's default `margin: 40 0`
+   left bg only filling content, breaking the alternating-band look on
+   home (surface / white / secondary / surface / white / surface). */
 main > .section {
-  margin: 40px 0;
+  padding: 48px 0;
+  margin: 0;
 }
 
 main > .section > div {
@@ -376,8 +380,10 @@ main > .section > div {
   padding: 0 24px;
 }
 
-main > .section:first-of-type {
-  margin-top: 0;
+@media (width <= 720px) {
+  main > .section {
+    padding: 32px 0; /* matches source --section-pad-sm */
+  }
 }
 
 /* section metadata */
@@ -388,12 +394,13 @@ main .section.highlight {
   padding: 40px 0;
 }
 
-/* Variant C — bg-surface section style: light gray band (matches the
-   `meta` band, news article-hero, etc.) */
+/* Variant C — bg-surface section style: light gray band (schwerpunkte,
+   events, news article-hero, etc.). Inherits the global section
+   padding of 48px 0 — explicit padding rule kept for legacy override
+   safety. */
 main .section.bg-surface {
   background-color: var(--color-surface);
-  margin: 0;
-  padding: 32px 0;
+  padding: 48px 0;
 }
 
 /* First paragraph in a bg-surface section reads as an eyebrow (news
