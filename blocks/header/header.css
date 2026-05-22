@@ -132,8 +132,11 @@
    so it sits inside <header> but below the sticky block, scrolling
    naturally with the content. Source has `<nav class="crumb">` styled
    as a thin white strip with a bottom border, font 13 muted, separator
-   › faded, last segment bold text color. */
-header > .crumb {
+   › faded, last segment bold text color. Selectors target `nav.crumb`
+   to bump specificity above the `.header.block .wrap`/`.header.block a`
+   rules above (avoids no-descending-specificity lint and accidental
+   cascade conflicts between the crumb's .wrap and the chrome's .wrap). */
+header > nav.crumb {
   padding: 14px 0;
   border-bottom: 1px solid var(--color-border);
   background: #fff;
@@ -141,7 +144,7 @@ header > .crumb {
   color: var(--color-muted);
 }
 
-header > .crumb .wrap {
+header > nav.crumb .wrap {
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 24px;
@@ -151,20 +154,20 @@ header > .crumb .wrap {
   flex-wrap: wrap;
 }
 
-header > .crumb a {
+header > nav.crumb a {
   color: var(--color-muted);
   text-decoration: none;
 }
 
-header > .crumb a:hover {
+header > nav.crumb a:hover {
   color: var(--color-primary-deep);
 }
 
-header > .crumb .sep {
+header > nav.crumb .sep {
   opacity: 0.5;
 }
 
-header > .crumb .here {
+header > nav.crumb .here {
   color: var(--color-text);
   font-weight: 600;
 }
